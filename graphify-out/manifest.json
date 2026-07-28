@@ -1,0 +1,27 @@
+{
+  "DESIGN.md": {
+    "mtime": 1785201504.67013,
+    "ast_hash": "77f5589d284fb2181d47a9408afdcf0d",
+    "semantic_hash": "77f5589d284fb2181d47a9408afdcf0d"
+  },
+  "README.md": {
+    "mtime": 1785201504.6721215,
+    "ast_hash": "02887eff1e4214a7033e1f6af80c7a97",
+    "semantic_hash": "02887eff1e4214a7033e1f6af80c7a97"
+  },
+  "docs/page_description.md": {
+    "mtime": 1785201504.6731195,
+    "ast_hash": "30a48b0a2e9e95246f55cb7df619a03e",
+    "semantic_hash": "30a48b0a2e9e95246f55cb7df619a03e"
+  },
+  "docs/requirements.md": {
+    "mtime": 1785201504.6751204,
+    "ast_hash": "0818f0f06e10591225f4c1c08e1fa42e",
+    "semantic_hash": "0818f0f06e10591225f4c1c08e1fa42e"
+  },
+  "docs/wbs.md": {
+    "mtime": 1785201504.6761205,
+    "ast_hash": "d1a46ea4d7bb185b551bcf2d4d0b3288",
+    "semantic_hash": "d1a46ea4d7bb185b551bcf2d4d0b3288"
+  }
+}

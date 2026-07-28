@@ -1,473 +1,511 @@
 ---
-id: imweb
-name: Imweb
-display_name_kr: 아임웹
+id: new-project-manager
+name: New Project Manager
+display_name_kr: 프로젝트 허브
 country: KR
-category: saas
-homepage: "https://imweb.me"
-primary_color: "#00b9ff"
-logo:
-  type: favicon
-  slug: "https://vendor-cdn.imweb.me/images/main/imweb-2309-favicon-120x120.png?v1"
-verified: "2026-06-10"
-added: "2026-06-10"
-omd: "0.1"
+category: productivity
+status: project-specific
+primary_color: "#2563eb"
+updated: "2026-07-28"
+omd: "0.2"
+sources:
+  - "docs/requirements.md"
+  - "docs/page_description.md"
+  - "docs/wbs.md"
 tokens:
-  source: live-extract
-  extracted: "2026-06-10"
-  note: "Brand identity cyan (#00b9ff) is reserved for data viz / identity moments; interactive CTAs are near-black ink (#15181e). Magenta (#ff50da) is an editorial eyebrow accent on pricing. UI chrome uses the custom 'imweb Sans' font; content uses Pretendard."
+  source: project-goal-synthesis
+  note: "프로젝트 쇼케이스와 협업형 지식 워크스페이스를 하나의 제품 경험으로 연결한다."
   colors:
-    primary: "#00b9ff"
-    primary-bright: "#2dc5ff"
-    primary-soft: "#81dcff"
-    primary-pale: "#dff6ff"
-    link: "#0090d4"
-    accent-magenta: "#ff50da"
-    ink: "#15181e"
-    ink-pure: "#000000"
-    body-secondary: "#4b515b"
-    muted: "#717680"
-    faint: "#9fa3ab"
-    faint-alt: "#bcc0c6"
-    hairline: "#dbdee3"
-    surface: "#f8f9fb"
-    canvas: "#ffffff"
+    primary: "#2563eb"
+    primary-hover: "#1d4ed8"
+    primary-soft: "#dbeafe"
+    accent: "#0891b2"
+    accent-soft: "#cffafe"
+    ink: "#111827"
+    body: "#374151"
+    muted: "#6b7280"
+    faint: "#9ca3af"
+    border: "#d7dee8"
+    surface: "#ffffff"
+    surface-subtle: "#f1f5f9"
+    canvas: "#f7f8fa"
+    success: "#15803d"
+    warning: "#b45309"
+    danger: "#b91c1c"
   typography:
-    family: { body: "Pretendard", ui: "imweb Sans" }
-    display-hero: { size: 80, weight: 700, lineHeight: 1.00, use: "Hero rotating keyword (매출내기), Pretendard Bold" }
-    display-lg:   { size: 48, weight: 700, lineHeight: 1.25, use: "Pricing page headline" }
-    section:      { size: 36, weight: 700, lineHeight: 1.48, use: "Section titles" }
-    subsection:   { size: 28, weight: 700, lineHeight: 1.48, use: "Feature card heads (디자인이 쉬워요)" }
-    card-title:   { size: 24, weight: 700, lineHeight: 1.33, use: "Pricing group heads, story card titles" }
-    body:         { size: 16, weight: 400, lineHeight: 1.50, use: "Standard reading text, Pretendard" }
-    button:       { size: 16, weight: 600, lineHeight: 1.50, use: "Primary CTA label, imweb Sans" }
-    button-sm:    { size: 14, weight: 600, lineHeight: 1.50, use: "Compact CTA / plan buttons, imweb Sans" }
-    caption:      { size: 12, weight: 600, use: "Discount tags, fine labels" }
-  spacing: { xs: 6, sm: 8, md: 12, base: 16, lg: 28, xl: 32, section: 64 }
-  rounded: { sm: 4, md: 8, lg: 12, xl: 16, full: 9999 }
-  shadow:
-    none: "none"
-  components:
-    button-primary: { type: button, bg: "#15181e", fg: "#ffffff", radius: "8px", padding: "12px 16px", height: "48px", font: "16px / 600 imweb Sans", use: "Primary CTA (지금 무료로 시작하기) — near-black ink, not brand cyan" }
-    button-secondary: { type: button, bg: "#ffffff", fg: "#4b515b", border: "1px solid #dbdee3", radius: "8px", padding: "8px 12px", height: "40px", font: "14px / 600 imweb Sans", use: "Plan-card trial CTA (14일 무료 체험 시작하기), hairline outline" }
-    icon-button: { type: button, fg: "#bcc0c6", radius: "9999px", padding: "8px", height: "32px", font: "14px / 400 imweb Sans", use: "Header search icon pill, translucent grey bg rgba(113,118,128,0.05)" }
-    card-faq: { type: card, bg: "#f8f9fb", fg: "#15181e", radius: "8px", padding: "28px 32px", font: "16px / 400 Pretendard", use: "FAQ accordion row on pricing page" }
-    tab-feature: { type: tab, active: "text #15181e", disabled: "#717680 label", font: "16px / 400 Pretendard", use: "Pricing feature-group tabs (기본/사용자/쇼핑/예약)" }
-    badge-promo: { type: badge, fg: "#0090d4", radius: "8px 8px 0 0", padding: "8px 0", font: "14px / 600 Pretendard", use: "Plan-card promo strip (PG 가입비 면제), cyan tint bg rgba(0,185,255,0.1)" }
-  components_harvested: true
+    family:
+      ui: "Pretendard Variable, Pretendard, Noto Sans KR, system-ui, sans-serif"
+      mono: "JetBrains Mono, SFMono-Regular, Consolas, monospace"
+  spacing: { xs: 4, sm: 8, md: 12, base: 16, lg: 24, xl: 32, section: 48 }
+  rounded: { sm: 6, md: 8, lg: 12, xl: 16, full: 9999 }
 ---
 
-## 1. Visual Theme & Atmosphere
+# 프로젝트 허브 디자인 시스템
 
-Imweb (아임웹) is Korea's leading no-code website builder and commerce platform, and its marketing surface reads like the product promise itself: clean, friendly, and deliberately easy. The canvas is pure white (`#ffffff`) with a soft cool-grey utility surface (`#f8f9fb`) for FAQ rows and secondary panels. All text sits in a near-black ink (`#15181e`) — a slightly blue-warmed charcoal rather than pure black — set in **Pretendard**, the de-facto Korean product font, at a comfortable 16px/1.5 base. The most surprising structural choice is the CTA strategy: although the brand identity color is a vivid sky cyan (`#00b9ff`), every primary call-to-action button is rendered in the near-black ink, not the brand color. Cyan is reserved for identity and data moments — growth charts, stat callouts, tinted promo strips — so the page feels monochrome-confident with the brand blue appearing as evidence rather than decoration.
+## 0. 문서 목적
 
-Typography is bold and unfussy. Headlines run Pretendard weight 700 at every level — an 80px rotating hero keyword ("매출내기"), 48px pricing headlines, 36px section titles, 28px feature heads — with **normal letter-spacing throughout**: no fashionable negative tracking, just big, legible, declarative hangul. A second, custom UI font called **imweb Sans** takes over inside interactive chrome (buttons, search, plan selectors), giving controls a subtly tighter, product-grade voice distinct from the editorial Pretendard around them. Body copy stays quiet at 16px weight 400.
+이 문서는 프로젝트 발표 자료를 탐색·검토하는 **프로젝트 매니저**와 문서를 작성·협업하는 **마크다운 공간**을 하나의 제품으로 구현하기 위한 디자인 기준이다.
 
-Depth is essentially flat. Live inspection found `box-shadow: none` across nav, hero, CTAs, and cards; separation comes from the `#f8f9fb` surface tint, 1px hairlines (`#dbdee3`), and a disciplined radius system where 8px is the overwhelming workhorse (95 of ~108 rounded elements on the homepage), stretched to 12-16px for media cards and a full pill only for the small icon button. One playful wildcard keeps the system from feeling sterile: a saturated magenta (`#ff50da`) used as an editorial eyebrow accent on pricing section labels — a single splash of commerce-energy against the otherwise cyan-and-ink palette.
+기존 문서는 Imweb 마케팅 사이트의 시각 언어를 직접 재현하는 데 초점이 있었다. 현재 문서는 프로젝트 요구사항, 페이지 명세, WBS를 기준으로 다음 경험을 우선한다.
 
-**Key Characteristics:**
-- Pretendard weight 700 for all display sizes, normal letter-spacing — bold, plain-spoken Korean headlines
-- Custom `imweb Sans` font for interactive chrome (buttons, search) — UI voice split from editorial voice
-- Near-black ink (`#15181e`) primary CTAs; brand cyan (`#00b9ff`) reserved for charts, stats, and identity moments
-- Magenta (`#ff50da`) as a single editorial eyebrow accent on pricing
-- Flat depth: no shadows; `#f8f9fb` surface tint + `#dbdee3` hairlines do the separating
-- 8px radius as the system workhorse; 12-16px for media cards; pill only on icon buttons
-- Cyan tint ladder (`#2dc5ff` → `#81dcff` → `#ade8ff` → `#dff6ff`) for chart highlights and dark-section text
-- Grey text ladder (`#4b515b` → `#717680` → `#9fa3ab` → `#bcc0c6`) for secondary/muted/faint hierarchy
+- 프로젝트를 빠르게 찾고 비교하고 공유한다.
+- PDF 발표 자료와 Q&A의 맥락을 끊지 않는다.
+- 블록 문서, 데이터베이스, 일정과 프로젝트 정보를 연결한다.
+- 공동 편집, 권한, 변경 이력처럼 복잡한 상태를 명확하게 보여준다.
+- 쇼케이스의 시각적 매력과 업무 도구의 정보 밀도를 한 제품 안에서 조절한다.
 
-## 2. Color Palette & Roles
+본 문서의 토큰은 초기 구현 기준이다. 브랜드 확정 전에도 일관된 UI를 만들 수 있어야 하며, 사용자 테스트 결과에 따라 값은 조정할 수 있다.
 
-### Brand
-- **Imweb Cyan** (`#00b9ff`): The brand identity color. Used on growth-chart bars, stat blocks, and tinted promo surfaces (`rgba(0,185,255,0.1)`) — deliberately NOT on CTA buttons.
-- **Cyan Bright** (`#2dc5ff`): Lighter cyan for emphasized text on dark or tinted sections.
-- **Cyan Soft** (`#81dcff`): Stat captions on cyan blocks ("2025 누적 사이트 개설 수").
-- **Cyan Mist** (`#ade8ff`): Pale cyan supporting text on saturated cyan surfaces.
-- **Cyan Pale** (`#dff6ff`): The faintest cyan, fine text on brand-cyan backgrounds.
-- **Link Blue** (`#0090d4`): Functional link/info color — discount percentages, promo strip text, inline links.
-- **Editorial Magenta** (`#ff50da`): Pricing eyebrow headlines ("브랜드 운영에 꼭 맞는") and FAQ category heads. The single warm accent in the system.
+## 1. 제품 디자인 명제
 
-### Ink & Text Hierarchy
-- **Ink** (`#15181e`): Primary text, headings, nav, and primary CTA background. The system's near-black.
-- **Pure Black** (`#000000`): Occasional maximum-contrast text and overlay scrims.
-- **Body Secondary** (`#4b515b`): Secondary button labels, sub-emphasis copy.
-- **Muted Grey** (`#717680`): Inactive tabs, tertiary text, de-emphasized labels.
-- **Faint Grey** (`#9fa3ab`): Strikethrough prices, lowest-emphasis metadata on pricing tables.
-- **Faint Alt** (`#bcc0c6`): Icon-button glyphs, placeholder-level chrome.
+### 1.1 하나의 제품, 두 가지 작업 모드
 
-### Surface & Borders
-- **Pure White** (`#ffffff`): Page canvas, plan cards, text on ink/cyan.
-- **Surface Grey** (`#f8f9fb`): FAQ accordion rows, utility panels, alternating bands.
-- **Hairline** (`#dbdee3`): 1px outline on secondary buttons and card borders — the primary separation device in a shadow-free system.
+제품은 별도 서비스 두 개처럼 보이면 안 된다.
 
-## 3. Typography Rules
+- **프로젝트 매니저:** 발견, 비교, 발표 자료 열람, 피드백에 최적화된 쇼케이스 모드
+- **마크다운 공간:** 작성, 구조화, 공동 편집, 관리에 최적화된 워크스페이스 모드
 
-### Font Family
-- **Editorial/body**: `Pretendard` (with system fallbacks) — all headlines, body copy, and content text.
-- **UI chrome**: `imweb Sans` (custom) — buttons, search, plan selectors, interactive labels.
+글로벌 헤더, 검색, 사용자 메뉴, 알림, 기본 색상과 상태 표현은 공유한다. 콘텐츠 폭, 정보 밀도, 보조 탐색 방식은 작업 모드에 맞게 달라진다.
 
-### Hierarchy
+### 1.2 핵심 원칙
 
-| Role | Font | Size | Weight | Line Height | Letter Spacing | Notes |
-|------|------|------|--------|-------------|----------------|-------|
-| Display Hero | Pretendard | 80px (5.00rem) | 700 | 1.00 (80px) | normal | Rotating hero keyword ("매출내기") |
-| Display Large | Pretendard | 48px (3.00rem) | 700 | 1.25 (60px) | normal | Pricing page headline |
-| Section Heading | Pretendard | 36px (2.25rem) | 700 | 1.36-1.48 | normal | Section titles |
-| Sub-section | Pretendard | 28px (1.75rem) | 700 | 1.48 (41px) | normal | Feature heads ("디자인이 쉬워요") |
-| Card Title | Pretendard | 24px (1.50rem) | 700 | 1.33 (32px) | normal | Pricing group heads, story cards |
-| Body | Pretendard | 16px (1.00rem) | 400 | 1.50 (24px) | normal | Standard reading text |
-| Button | imweb Sans | 16px (1.00rem) | 600 | 1.50 | normal | Primary CTA label |
-| Button Small | imweb Sans | 14px (0.88rem) | 600 | 1.50 | normal | Plan-card CTAs |
-| Caption | Pretendard | 12px (0.75rem) | 600 | 1.50 | normal | Discount tags ("20%") |
+1. **맥락을 보존한다.** 목록의 필터, PDF의 현재 페이지, 댓글 스레드, 문서 위치가 화면 이동 후에도 유지되어야 한다.
+2. **근거를 가까이 둔다.** 프로젝트 설명, 발표 슬라이드, Q&A, 관련 문서와 마일스톤을 가능한 한 같은 맥락에서 연결한다.
+3. **상태를 숨기지 않는다.** 저장, 동기화, 업로드, 권한, 해결 여부, 버전 상태를 사용자가 추측하게 만들지 않는다.
+4. **표면에 따라 밀도를 조절한다.** 쇼케이스는 이미지와 요약을 넉넉하게, 에디터와 데이터베이스는 조밀하지만 읽기 쉽게 구성한다.
+5. **키보드와 링크를 일급 기능으로 취급한다.** 슬래시 명령, 단축키, 딥링크, URL 기반 필터 상태를 핵심 상호작용으로 설계한다.
 
-### Principles
-- **One weight for display**: every headline is weight 700. Hierarchy comes from size (80 → 48 → 36 → 28 → 24), never from weight changes.
-- **No tracking games**: letter-spacing is `normal` at every size — the system trusts Pretendard's native hangul fit.
-- **Two fonts, two jobs**: Pretendard speaks (content); imweb Sans operates (controls). They never swap roles.
-- **Semibold for action**: all button labels are weight 600 — distinctly heavier than 400 body text, lighter than 700 headlines.
+## 2. 주요 사용자와 작업
 
-## 4. Component Stylings
+| 사용자 | 주요 목표 | 디자인이 해결할 문제 |
+| --- | --- | --- |
+| 탐색자·리뷰어 | 프로젝트를 찾고 발표 자료를 검토하고 질문한다 | 검색과 필터, 비교 가능한 목록, PDF와 댓글의 직접 연결 |
+| 프로젝트 기여자 | 프로젝트 정보와 자료를 등록·갱신한다 | 명확한 메타데이터 폼, 대용량 업로드 상태, 버전 이력 |
+| 문서 협업자 | 문서와 데이터베이스를 작성하고 함께 편집한다 | 블록 조작, 현재 위치, 동시 편집 상태, 충돌 없는 피드백 |
+| 워크스페이스 관리자 | 권한, 공개 링크, 가져오기·내보내기, 웹훅을 관리한다 | 영향 범위와 위험도를 드러내는 관리 UI |
 
-### Buttons
+## 3. 정보 구조와 핵심 흐름
 
-**Primary CTA**
-- Background: `#15181e`
-- Text: `#ffffff`
-- Radius: 8px
-- Padding: 12px 16px
-- Height: 48px
-- Font: 16px / 600 / imweb Sans
-- Use: Primary call-to-action ("지금 무료로 시작하기") — near-black ink, never brand cyan
+### 3.1 글로벌 구조
 
-**Plan Card Primary (Compact)**
-- Background: `#15181e`
-- Text: `#ffffff`
-- Radius: 8px
-- Padding: 8px 12px
-- Height: 40px
-- Font: 14px / 600 / imweb Sans
-- Use: Highlighted plan's trial CTA on pricing cards
+```text
+Global Header
+├─ Project Manager
+│  ├─ Project List
+│  ├─ Project Detail + PDF + Q&A
+│  ├─ Project Create/Edit
+│  └─ Author Projects
+└─ Markdown Space
+   ├─ Sidebar Tree
+   ├─ Markdown Editor
+   ├─ Database Views
+   └─ History / Permissions / Integrations / Import-Export
+```
 
-**Plan Card Secondary (Outline)**
-- Background: `#ffffff`
-- Text: `#4b515b`
-- Border: 1px solid `#dbdee3` (rendered as outline)
-- Radius: 8px
-- Padding: 8px 12px
-- Height: 40px
-- Font: 14px / 600 / imweb Sans
-- Use: Non-highlighted plans' trial CTA ("14일 무료 체험 시작하기")
+### 3.2 대표 사용자 흐름
 
-**Icon Button (Search)**
-- Background: `rgba(113,118,128,0.05)`
-- Text: `#bcc0c6`
-- Radius: 999999px (full pill)
-- Padding: 8px
-- Height: 32px
-- Font: 14px / 400 / imweb Sans
-- Use: Header search trigger
+1. 통합 검색 또는 프로젝트 목록에서 대상을 찾는다.
+2. 프로젝트 상세에서 PDF와 설명을 함께 검토한다.
+3. 댓글의 `#p12` 태그로 특정 슬라이드에 질문을 연결한다.
+4. 관련 회의록·요구사항·마일스톤을 마크다운 공간에서 연다.
+5. 필요한 경우 프로젝트 정보와 문서를 수정하고 변경 상태를 확인한다.
 
-### Cards & Containers
+필터, 정렬, 뷰 모드, PDF 페이지, 활성 탭은 URL로 복원 가능해야 한다.
 
-**FAQ Accordion Row**
-- Background: `#f8f9fb`
-- Text: `#15181e`
-- Radius: 8px
-- Padding: 28px 32px
-- Font: 16px / 400 / Pretendard
-- Use: Expandable FAQ rows on the pricing page (no shadow, no border)
+## 4. 시각 언어
 
-**Template Showcase Card**
-- Background: `#ffffff`
-- Text: `#15181e`
-- Radius: 12px
-- Font: 16px / 400 / Pretendard
-- Use: Template/customer-site gallery cards (~318px tall) in the hero carousel
+### 4.1 분위기
 
-### Badges & Promo Strips
+전체 인상은 **차분한 업무 도구 위에 프로젝트 결과물이 돋보이는 구조**다.
 
-**Plan Promo Strip**
-- Background: `rgba(0,185,255,0.1)`
-- Text: `#0090d4`
-- Radius: 8px 8px 0px 0px
-- Padding: 8px 0px
-- Font: 14px / 600 / Pretendard
-- Use: Top strip on highlighted plan card ("PG 가입비 면제 마감 임박")
+- 제품 크롬은 중립색과 얇은 경계선으로 조용하게 유지한다.
+- 썸네일, PDF, 코드, 다이어그램 등 프로젝트 콘텐츠가 시각적 주인공이 된다.
+- 브랜드 블루는 주요 행동, 현재 위치, 선택 상태에 사용한다.
+- 시안 계열 액센트는 PDF 딥링크, 연결 문서, 동기화처럼 “맥락 연결”을 나타낼 때 제한적으로 사용한다.
+- 장식용 그라데이션과 과도한 그림자는 사용하지 않는다.
 
-**Discount Tag**
-- Text: `#0090d4`
-- Font: 12px / 600 / Pretendard
-- Use: Yearly-billing discount percentage ("20%") next to plan prices
+### 4.2 색상 토큰
 
-### Tabs
+| 역할 | 토큰 | 값 | 사용 |
+| --- | --- | --- | --- |
+| 주요 행동 | `primary` | `#2563eb` | 기본 버튼, 활성 탭, 선택 상태 |
+| 주요 행동 Hover | `primary-hover` | `#1d4ed8` | hover·pressed |
+| 선택 배경 | `primary-soft` | `#dbeafe` | 선택 행, 활성 필터, 현재 문서 |
+| 연결 액센트 | `accent` | `#0891b2` | 딥링크, 연결 문서, 동기화 |
+| 기본 텍스트 | `ink` | `#111827` | 제목, 핵심 정보 |
+| 본문 | `body` | `#374151` | 본문과 일반 라벨 |
+| 보조 텍스트 | `muted` | `#6b7280` | 메타데이터, 보조 설명 |
+| 비활성 텍스트 | `faint` | `#9ca3af` | placeholder, 비활성 상태 |
+| 캔버스 | `canvas` | `#f7f8fa` | 앱 배경 |
+| 표면 | `surface` | `#ffffff` | 패널, 카드, 메뉴 |
+| 보조 표면 | `surface-subtle` | `#f1f5f9` | 툴바, 빈 상태, 코드 외곽 |
+| 경계 | `border` | `#d7dee8` | 입력, 표 행, 분할선 |
 
-**Pricing Feature Tabs**
-- Text: `#15181e` (active)
-- Disabled: `#717680` (inactive label)
-- Background: transparent
-- Font: 16px / 400 / Pretendard
-- Use: Feature-group switcher on pricing comparison ("쇼핑몰 창업 지원", "기본", "사용자", "쇼핑", "예약", "통계·분석·마케팅")
+### 4.3 의미 색상
 
-### Navigation
-- Background: `#ffffff`
-- Text: `#15181e`
-- Font: 16px / 400 / Pretendard
-- Use: Top horizontal nav ("주요기능", "템플릿", "요금", "전문가 찾기", "스토리", "고객지원") with dark primary CTA right-aligned
+의미 색상은 텍스트·아이콘·라벨을 함께 사용한다. 색만으로 상태를 구분하지 않는다.
 
-### Data Visualization
-- Bars: `#00b9ff` solid fill
-- Radius: 4px 4px 0px 0px (top-rounded bar caps)
-- Use: Cumulative-sites growth chart (2021 → 2024 "80만 개"); captions on cyan in `#81dcff`
+| 상태 | 색 | 예 |
+| --- | --- | --- |
+| 성공 | `#15803d` | 저장 완료, 업로드 완료, 해결됨 |
+| 경고 | `#b45309` | 마감 임박, 동기화 지연, 공개 링크 만료 예정 |
+| 위험 | `#b91c1c` | 삭제, 업로드 실패, 권한 제거 |
+| 정보 | `#0369a1` | 처리 중 안내, 새 버전, 시스템 정보 |
 
----
-**Verified:** 2026-06-10
-**Tier 1 sources:** https://imweb.me (homepage, live computed-style inspect), https://imweb.me/price (pricing surface, live computed-style inspect), https://imweb.me/blog (아임웹 공식 블로그 — brand-owned, voice/tone source)
-**Tier 2 sources:** none available — getdesign.md/imweb returns "No designs found"; styles.refero.design search for "imweb" and "아임웹" returned only generic catalog listings with no Imweb-specific style page
-**Conflicts unresolved:** none
+프로젝트 진행 상태는 다음처럼 고정한다.
 
-## 5. Layout Principles
+- `기획 중`: neutral + 문서 아이콘
+- `개발 중`: primary + 진행 아이콘
+- `완료`: success + 체크 아이콘
+- `발표 마감`: warning 또는 danger + 시계 아이콘
+- `보관됨`: muted + archive 아이콘
 
-### Spacing System
-- Base unit: ~8px with a 4px sub-grid
-- Observed scale: 6px, 8px, 12px, 16px, 28px, 32px, 64px
-- Notable: FAQ rows carry generous 28px 32px padding, making text-heavy support content feel calm and tappable
+### 4.4 타이포그래피
 
-### Grid & Container
-- Centered hero with the 80px rotating keyword as the anchor and a horizontally scrolling template-card carousel beneath
-- Feature trio ("디자인이 쉬워요 / 운영이 쉬워요 / 마케팅이 쉬워요") in a 3-up card row
-- Pricing: plan cards in a row with the recommended plan carrying the cyan-tinted promo strip; full feature-comparison table below behind tabs
-- Full-width alternating bands of white and `#f8f9fb`
+한국어 가독성과 제품 UI의 일관성을 위해 별도 브랜드 폰트에 의존하지 않는다.
 
-### Whitespace Philosophy
-- **Easy to scan, easy to start**: the layout mirrors the product pitch — generous vertical rhythm, one idea per band, nothing dense except the opt-in comparison table.
-- **Flat segmentation**: bands separate by background tint, not by shadow or border weight.
-- **Evidence blocks**: the cyan data-viz section is the one saturated moment; whitespace around it makes the growth numbers read as proof.
+- UI·본문: `Pretendard Variable`, `Pretendard`, `Noto Sans KR`, `system-ui`
+- 코드·수식 보조: `JetBrains Mono`, `SFMono-Regular`, `Consolas`
 
-### Border Radius Scale
-- Small (4px): chart bar caps (top corners)
-- Medium (8px): buttons, FAQ rows, plan cards — the workhorse
-- Large (12px): template/media showcase cards
-- XL (16px): occasional feature containers
-- Full (999999px): icon-button pill only
+| 역할 | 크기 / 행간 | 굵기 | 사용 |
+| --- | --- | --- | --- |
+| Page title | 32 / 40 | 700 | 프로젝트·문서 제목 |
+| Section title | 24 / 32 | 700 | 주요 영역 제목 |
+| Subsection | 20 / 28 | 600 | 패널·카드 제목 |
+| Body | 16 / 24 | 400 | 문서, 설명 |
+| UI label | 14 / 20 | 500 | 버튼, 탭, 표 헤더 |
+| Metadata | 12 / 18 | 400 | 작성자, 날짜, 버전 |
+| Code | 14 / 22 | 400 | 코드 블록, 인라인 코드 |
 
-## 6. Depth & Elevation
+긴 문서 본문은 65~78자 폭을 목표로 한다. 데이터베이스와 표는 가독성을 해치지 않는 범위에서 더 조밀하게 표시한다.
 
-| Level | Treatment | Use |
-|-------|-----------|-----|
-| Flat (Level 0) | No shadow | Page background, text, nav, CTAs |
-| Tint (Level 1) | `#f8f9fb` background shift | FAQ rows, utility panels, alternating bands |
-| Hairline (Level 2) | 1px `#dbdee3` outline | Secondary buttons, card edges |
-| Brand block (Level 3) | Solid `#00b9ff` band | Data-viz / stats section — color as elevation |
+### 4.5 간격·형태·깊이
 
-**Shadow Philosophy**: Imweb is a shadow-free system. Live inspection found `box-shadow: none` on the nav, hero CTAs, plan cards, and FAQ rows. Hierarchy is communicated through surface tint, hairlines, and — uniquely — saturated brand-color blocks: when Imweb wants a section to feel important, it floods the background with cyan (`#00b9ff`) and switches text to the pale cyan ladder, rather than lifting a card with elevation. This keeps the builder-marketing surface feeling fast, flat, and modern, and leaves visual drama to the customer sites shown in the template carousel.
+- 간격: `4, 8, 12, 16, 24, 32, 48px`
+- 기본 컨트롤 높이: `40px`
+- 주요 행동과 모바일 터치 영역: 최소 `44px`
+- 반경: 입력·버튼 `8px`, 패널 `12px`, 미디어 `16px`, 배지 `9999px`
+- 기본 패널은 1px 경계선을 사용하고 그림자는 사용하지 않는다.
+- 메뉴, 팝오버, 드래그 프리뷰에만 낮은 그림자를 허용한다.
+- 카드 안에 카드를 반복해서 중첩하지 않는다.
 
-## 7. Do's and Don'ts
+## 5. 글로벌 셸
+
+### 5.1 글로벌 헤더
+
+- 데스크톱 높이 `56px`, 모바일 높이 `52px`
+- 좌측: 로고와 `프로젝트 매니저 ↔ 마크다운 공간` 전환
+- 중앙: 통합 검색
+- 우측: 새 항목 행동, 알림, 사용자 메뉴
+- 현재 서비스는 텍스트, 색상, 하단 표시선 중 두 가지 이상으로 식별한다.
+
+서비스 전환은 라우트가 바뀌어도 사용자의 검색어와 최근 맥락을 가능한 한 보존한다.
+
+### 5.2 사이드바
+
+- 데스크톱 기본 폭 `264px`, 축소 폭 `64px`
+- 컬렉션과 문서 계층은 들여쓰기, chevron, 선택 배경으로 표현한다.
+- 드래그 대상과 놓을 위치를 분명하게 구분한다.
+- 즐겨찾기, 최근 문서, 휴지통, 관리자 메뉴는 문서 트리와 시각적으로 분리한다.
+- 모바일에서는 오버레이 drawer로 전환한다.
+
+### 5.3 검색
+
+- 프로젝트와 문서를 결과 그룹으로 나눈다.
+- 결과에는 유형, 제목, 일치 구문, 위치, 권한 상태를 표시한다.
+- 키보드 방향키, Enter, Escape를 지원한다.
+- 권한 없는 결과의 존재를 암시하지 않는다.
+
+## 6. 프로젝트 매니저
+
+### 6.1 프로젝트 목록
+
+상단 컨트롤은 다음 순서로 배치한다.
+
+1. 페이지 제목과 새 프로젝트 버튼
+2. 검색
+3. 진행 상태·기술 스택·학기·작성자 필터
+4. 정렬과 카드·리스트·테이블 뷰 전환
+
+필터가 적용되면 활성 조건 수와 해제 행동을 가까이 표시한다. 필터 패널을 닫아도 활성 조건은 칩으로 남긴다.
+
+#### 카드 뷰
+
+- 16:9 썸네일
+- 제목은 최대 2줄
+- 한 줄 요약은 최대 2줄
+- 진행 상태, 핵심 기술 태그 2~3개, 작성자, 좋아요·댓글 수
+- 카드 전체를 링크로 만들되 내부 버튼의 클릭 영역은 분리한다.
+
+#### 리스트 뷰
+
+- 썸네일보다 제목, 요약, 작성자와 최근 활동을 우선한다.
+- 빠른 스캔을 위해 행 높이와 메타데이터 위치를 고정한다.
+
+#### 테이블 뷰
+
+- 비교 대상이 되는 상태, 기간, 작성자, 기술 스택, 최근 업데이트를 열로 제공한다.
+- 열 숨김과 가로 스크롤을 허용하되 제목 열은 고정한다.
+
+### 6.2 프로젝트 상세
+
+상단에서 제목, 요약, 상태, 기간, 팀원, 기술 스택과 주요 행동을 한 번에 파악할 수 있어야 한다.
+
+데스크톱 기본 구조:
+
+- 주 영역: PDF 뷰어 또는 프로젝트 보고서
+- 보조 영역: 목차, 버전, Q&A, 관련 문서
+- 탭: `발표 자료`, `상세 보고서`, `관련 문서`, `첨부 파일`
+
+PDF 뷰어는 콘텐츠 집중을 위해 짙은 중립 배경을 사용할 수 있는 유일한 주요 표면이다. 페이지 번호, 확대율, 전체 화면, 버전은 항상 현재 상태를 보여준다.
+
+`#page=12`와 댓글의 `#p12`는 연결 액센트 색과 링크 아이콘을 사용한다. 클릭 시 페이지 이동 후 해당 슬라이드와 댓글 맥락을 동시에 강조한다.
+
+### 6.3 Q&A와 댓글
+
+- 질문, 일반 피드백, 해결됨 상태를 텍스트 라벨로 구분한다.
+- 댓글은 작성자, 작성 시각, 편집 여부, 멘션, 슬라이드 태그를 표시한다.
+- 답글은 과도하게 들여쓰지 않고 2단계부터 동일 스레드 선을 사용한다.
+- `해결됨` 전환은 질문 작성자와 프로젝트 기여자에게만 노출한다.
+- 새 답글과 멘션은 댓글 전체를 재정렬하지 않고 해당 위치에 안정적으로 삽입한다.
+
+### 6.4 프로젝트 등록·수정
+
+폼은 `기본 정보 → 참여자·기간 → 자료 업로드 → 상세 보고서 → 검토` 순서로 구성한다.
+
+- 필수·선택 항목을 명확히 표시한다.
+- 대용량 파일은 파일별 진행률, 처리 상태, 실패 원인, 재시도를 제공한다.
+- 기존 PDF를 교체할 때는 “덮어쓰기”가 아니라 “새 버전 추가”임을 명확히 알린다.
+- 저장 전 이탈 시 변경 사항 경고를 제공한다.
+
+## 7. 마크다운 공간
+
+### 7.1 블록 에디터
+
+- 본문 캔버스 최대 폭은 기본 `760px`
+- 블록 핸들은 hover와 키보드 focus에서 나타난다.
+- 슬래시 메뉴는 검색 결과, 카테고리, 단축키를 함께 보여준다.
+- 드래그 중 원본 위치, 놓을 위치, 다단 레이아웃 경계를 구분한다.
+- 코드, 수식, 임베드, 데이터베이스 블록은 공통 블록 툴바를 사용한다.
+- 하위 페이지는 일반 링크와 구분되는 페이지 아이콘과 이동 affordance를 갖는다.
+
+### 7.2 협업 상태
+
+- 참여자 아바타와 커서 색은 동일 사용자에게 세션 내에서 일관되게 배정한다.
+- 저장 상태는 `저장 중 → 저장됨`, 네트워크 문제는 `오프라인 변경 사항 있음`으로 표현한다.
+- 인라인 댓글이 있는 텍스트는 배경색만이 아니라 댓글 아이콘과 연결선으로 표시한다.
+- 충돌과 권한 변경은 toast만으로 끝내지 않고 해당 블록 또는 페이지에 지속 상태를 남긴다.
+
+### 7.3 데이터베이스
+
+데이터베이스는 가능한 폭을 모두 사용하는 유동형 캔버스다.
+
+- Table, Board, Calendar, Gallery, List는 같은 데이터와 필터 상태를 공유한다.
+- 뷰 전환은 콘텐츠를 다시 불러오는 느낌 없이 즉시 이루어져야 한다.
+- 속성 타입은 아이콘과 이름으로 함께 식별한다.
+- 필터와 정렬은 자연어에 가까운 문장형 빌더로 구성한다.
+- Relation은 연결 대상, Rollup은 계산 기준과 집계 방식을 단계적으로 선택한다.
+- 위험한 스키마 변경은 영향받는 뷰와 수식을 먼저 보여준다.
+
+### 7.4 이력·권한·공개
+
+- Diff는 추가, 삭제, 변경되지 않은 맥락을 동시에 읽을 수 있어야 한다.
+- 복원은 현재 버전을 지우지 않고 새 버전으로 생성한다.
+- 권한은 상속 여부와 실제 적용 권한을 함께 표시한다.
+- 외부 공개에는 비밀번호, 만료일, 검색 노출 여부를 한 화면에서 확인하게 한다.
+- 삭제, 권한 축소, 공개 전환은 영향 범위를 명시한 확인 절차를 사용한다.
+
+## 8. 공통 컴포넌트
+
+### 8.1 버튼
+
+| 종류 | 사용 |
+| --- | --- |
+| Primary | 화면의 한 가지 핵심 행동 |
+| Secondary | 저장 외 보조 행동, 취소가 아닌 대안 |
+| Ghost | 툴바, 행 내부, 반복 행동 |
+| Destructive | 삭제, 권한 제거, 공개 해제 |
+
+한 컨트롤 그룹에서 Primary는 하나만 사용한다. 아이콘만 있는 버튼은 명확한 accessible name과 tooltip을 제공한다.
+
+### 8.2 입력과 선택
+
+- 라벨을 placeholder로 대체하지 않는다.
+- 오류는 입력 바로 아래에 원인과 해결 방법을 표시한다.
+- 자동 저장과 수동 저장이 섞이는 화면에서는 저장 책임을 명시한다.
+- 다중 선택은 선택 수, 전체 해제, overflow 상태를 제공한다.
+
+### 8.3 탭·필터·배지
+
+- 탭은 같은 맥락의 화면 전환에만 사용한다.
+- 필터 칩은 제거 가능한 조건, 배지는 읽기 전용 상태에 사용한다.
+- 진행 상태, 권한, 질문 해결 여부를 같은 배지 스타일로 혼용하지 않는다.
+
+### 8.4 패널·카드·표
+
+- 카드: 프로젝트나 파일처럼 하나의 독립 객체
+- 패널: 도구, 메타데이터, 보조 컨텍스트
+- 표: 비교와 대량 편집
+
+모든 정보를 카드로 감싸지 않는다. 계층은 간격, 제목, 분할선으로 먼저 표현한다.
+
+### 8.5 알림
+
+- Toast: 완료처럼 짧게 사라져도 되는 피드백
+- Inline message: 현재 입력이나 블록과 직접 관련된 문제
+- Banner: 오프라인, 권한 변경, 시스템 장애처럼 화면 전체에 영향을 주는 상태
+- Notification center: 멘션, 댓글, 프로젝트 업데이트처럼 다시 확인할 사건
+
+## 9. 상태 설계
+
+모든 주요 화면은 다음 상태를 구현해야 한다.
+
+| 상태 | 표현 |
+| --- | --- |
+| 초기 로딩 | 실제 레이아웃과 닮은 skeleton |
+| 부분 로딩 | 해당 패널 또는 행만 진행 상태 표시 |
+| 빈 상태 | 이유, 다음 행동, 권한 여부를 설명 |
+| 검색 결과 없음 | 활성 필터와 검색어를 보여주고 수정 경로 제공 |
+| 권한 없음 | 요청 가능한 권한과 담당자 안내 |
+| 오프라인 | 읽기 가능 범위와 로컬 변경 저장 상태 표시 |
+| 업로드 실패 | 파일별 원인, 재시도, 제거 행동 |
+| 동기화 충돌 | 영향 범위, 보존된 버전, 해결 행동 |
+
+로딩 중 기존 콘텐츠를 불필요하게 지우지 않는다. 낙관적 업데이트를 사용한 경우 실패 시 되돌림과 원인을 명확히 보여준다.
+
+## 10. 반응형 규칙
+
+| 구간 | 너비 | 핵심 변화 |
+| --- | --- | --- |
+| Mobile | `<640px` | 단일 열, 사이드바 drawer, 카드 중심 목록 |
+| Tablet | `640–1023px` | 2열 카드, 보조 패널을 탭·drawer로 전환 |
+| Desktop | `1024–1439px` | 고정 사이드바, 분할 상세 화면 |
+| Wide | `≥1440px` | PDF·Q&A 또는 편집기·컨텍스트 동시 표시 |
+
+모바일 규칙:
+
+- PDF 컨트롤은 핵심 항목만 남기고 나머지는 overflow 메뉴로 이동한다.
+- Q&A와 관련 문서는 PDF 아래로 배치한다.
+- 테이블은 중요 열을 우선하고 필요할 때 가로 스크롤한다.
+- 블록 드래그는 길게 누르기와 명시적 이동 메뉴를 함께 제공한다.
+- hover에만 존재하는 기능을 만들지 않는다.
+
+## 11. 접근성
+
+- WCAG 2.2 AA를 목표로 한다.
+- 일반 텍스트 대비는 최소 `4.5:1`, 큰 텍스트와 비텍스트 UI는 최소 `3:1`
+- 모든 기능은 키보드로 접근·실행 가능해야 한다.
+- focus ring은 배경과 `3:1` 이상 대비되는 2px 외곽선으로 표시한다.
+- 모달과 팝오버는 focus를 올바르게 이동하고 닫은 뒤 원래 트리거로 복귀한다.
+- 색상만으로 진행 상태, 사용자 커서, Diff, 오류를 구분하지 않는다.
+- 애니메이션 감소 설정에서 이동·확대 애니메이션을 제거한다.
+- PDF, 이미지, 썸네일에는 대체 텍스트 또는 설명 입력 경로를 제공한다.
+
+## 12. 모션
+
+- 빠른 상태 변화: `120ms`
+- 메뉴·패널: `180ms`
+- 레이아웃 전환: 최대 `240ms`
+- 기본 easing: `cubic-bezier(0.2, 0, 0, 1)`
+
+모션은 위치 관계와 상태 변화를 설명할 때만 사용한다. 무한 반복, 장식적 parallax, 콘텐츠를 늦게 보여주는 fade는 사용하지 않는다.
+
+## 13. 콘텐츠와 문체
+
+- 짧고 직접적인 한국어를 사용한다.
+- 버튼은 결과가 예상되는 동사형으로 쓴다: `프로젝트 등록`, `새 버전 추가`, `해결됨으로 표시`
+- 모호한 `확인`, `예`, `계속` 대신 행동을 명시한다.
+- 오류는 “무엇이 실패했는지 → 왜 실패했는지 → 무엇을 할 수 있는지” 순서로 쓴다.
+- 삭제·권한·공개 관련 문구는 영향 대상과 복구 가능 여부를 포함한다.
+- 내부 구현 용어(CRDT, AST 등)는 관리자나 개발자 대상 화면이 아니면 노출하지 않는다.
+
+## 14. 구현 계약
+
+### 14.1 토큰 우선
+
+색상, 간격, 글꼴, 반경, 그림자를 컴포넌트에 직접 입력하지 않는다. 의미 기반 토큰을 사용한다.
+
+```css
+:root {
+  --color-primary: #2563eb;
+  --color-primary-hover: #1d4ed8;
+  --color-primary-soft: #dbeafe;
+  --color-accent: #0891b2;
+  --color-ink: #111827;
+  --color-body: #374151;
+  --color-muted: #6b7280;
+  --color-border: #d7dee8;
+  --color-surface: #ffffff;
+  --color-canvas: #f7f8fa;
+}
+```
+
+### 14.2 컴포넌트 우선
+
+- 공통 입력, 메뉴, dialog, tooltip, tabs는 검증된 접근성 primitive를 감싼다.
+- 프로젝트 카드, 속성 셀, 댓글, 업로드 행처럼 반복되는 패턴을 재사용 컴포넌트로 만든다.
+- 뷰별로 필터·정렬 상태 모델을 새로 만들지 않는다.
+- 에디터, PDF, 데이터베이스 엔진의 코어는 수정하지 않고 adapter와 plugin 계층에서 제품 규칙을 적용한다.
+
+### 14.3 상태와 URL
+
+- 목록 뷰, 정렬, 필터, 활성 탭, PDF 페이지는 URL과 동기화한다.
+- 자동 저장, 업로드, 동기화는 명시적 상태 머신을 사용한다.
+- 서버 권한과 클라이언트 표시 권한을 별개로 두지 않는다.
+
+### 14.4 완료 기준
+
+디자인 구현은 다음을 모두 만족해야 완료다.
+
+- Desktop, Tablet, Mobile에서 정보 손실 없이 동작한다.
+- 키보드만으로 주요 사용자 흐름을 완료할 수 있다.
+- loading, empty, error, permission, offline 상태가 존재한다.
+- 화면의 주요 상태가 새로고침 후 복원된다.
+- 주요 색상 대비와 focus 흐름이 자동·수동 검증을 통과한다.
+- PDF 딥링크, 댓글 태그, 관련 문서 이동이 실제 맥락을 유지한다.
+
+## 15. 요구사항 추적
+
+| 디자인 영역 | 관련 요구사항 |
+| --- | --- |
+| 글로벌 헤더, 로그인, 검색, 알림 | FR-1, FR-3.3, FR-5.5, FR-19 |
+| 프로젝트 등록과 목록 | FR-2, FR-3 |
+| 프로젝트 상세, PDF, Q&A | FR-4, FR-5 |
+| 작성자·마크다운 공간 연동 | FR-6 |
+| 블록 에디터와 중첩 페이지 | FR-7 ~ FR-12 |
+| 데이터베이스와 5대 뷰 | FR-13 ~ FR-17 |
+| 컬렉션, 검색, 백링크, 이력 | FR-18 ~ FR-21 |
+| 실시간 협업과 권한 | FR-22 ~ FR-25 |
+| Import/Export, API, 웹훅 | FR-26 ~ FR-29 |
+
+`docs/page_description.md`가 참조하지만 `docs/requirements.md`에 명시적으로 정의되지 않은 `FR-3.5`, `FR-10`, `FR-27`, `FR-28`은 요구사항 문서에서 보완해야 한다. 디자인은 해당 기능을 가정하되 구현 승인 전 추적 상태를 `미정`으로 표시한다.
+
+## 16. Do / Don't
 
 ### Do
-- Use Pretendard weight 700 for every headline; scale size, not weight
-- Keep letter-spacing normal at all sizes — no negative tracking
-- Render primary CTAs in near-black ink (`#15181e`), not brand cyan
-- Reserve cyan (`#00b9ff`) for data viz, stats, and identity moments
-- Use `imweb Sans` for button and control labels at weight 600
-- Separate sections with `#f8f9fb` tint and `#dbdee3` hairlines — never shadows
-- Hold the 8px radius as the default; 12px+ only for media cards
-- Use the magenta (`#ff50da`) sparingly — a single editorial eyebrow per view
+
+- 프로젝트 결과물과 업무 UI의 시각적 우선순위를 분리한다.
+- 현재 위치, 선택, 저장, 동기화, 권한 상태를 지속적으로 보여준다.
+- PDF 페이지와 댓글, 프로젝트와 문서, 데이터베이스와 마일스톤을 직접 연결한다.
+- 같은 데이터는 어떤 뷰에서도 동일한 필터와 상태 의미를 유지한다.
+- 위험한 행동 전에 영향 범위와 복구 가능성을 설명한다.
 
 ### Don't
-- Put brand cyan on CTA buttons — the action color is ink
-- Add drop shadows for elevation — the system is flat
-- Mix multiple display weights — 700 is the only headline weight
-- Apply negative letter-spacing to hangul headlines
-- Use the magenta accent on more than one element per view
-- Use pure black (`#000000`) where ink (`#15181e`) is established for text
-- Round buttons into pills — only the small icon button is fully round
-- Crowd the comparison table outside its tabbed container
 
-## 8. Responsive Behavior
+- 마케팅 페이지의 대형 hero와 과도한 여백을 업무 화면에 그대로 적용하지 않는다.
+- 브랜드 색을 모든 버튼, 링크, 배지에 반복하지 않는다.
+- hover에만 핵심 행동을 숨기지 않는다.
+- toast만으로 실패, 권한, 오프라인 상태를 처리하지 않는다.
+- 모든 콘텐츠를 카드 안에 중첩하지 않는다.
+- PDF, 에디터, 데이터베이스를 서로 다른 제품처럼 스타일링하지 않는다.
 
-### Breakpoints
-| Name | Width | Key Changes |
-|------|-------|-------------|
-| Mobile | <640px | Single column, hero keyword scales down, carousel becomes swipe |
-| Tablet | 640-1024px | 2-up feature cards, plan cards stack or scroll |
-| Desktop | 1024-1440px | Full layout, 3-up features, plan row with comparison table |
+## 17. 설계 결정 요약
 
-### Touch Targets
-- Primary CTA at 48px height with 12px 16px padding — comfortably tappable
-- Plan-card CTAs at 40px height
-- FAQ rows are full-width 88px+ touch targets with 28px 32px padding
-- Icon button at 32px pill with 8px padding
-
-### Collapsing Strategy
-- Hero: 80px rotating keyword compresses on mobile; weight 700 maintained
-- Template carousel: horizontal swipe at all sizes
-- Feature trio: 3-up → stacked single column
-- Pricing comparison table: tabbed groups collapse to accordion-style disclosure
-- Alternating white/`#f8f9fb` bands maintain full-width treatment
-
-### Image Behavior
-- Template showcase cards keep 12px radius and no shadow at all sizes
-- Customer-site screenshots are the visual texture of the page — the chrome around them stays monochrome so the showcased designs carry the color
-
-## 9. Agent Prompt Guide
-
-### Quick Color Reference
-- Brand identity / data viz: Imweb Cyan (`#00b9ff`)
-- Primary CTA: Ink (`#15181e`) with white text
-- Background: Pure White (`#ffffff`)
-- Utility surface: Surface Grey (`#f8f9fb`)
-- Heading / body text: Ink (`#15181e`)
-- Secondary text: Body Secondary (`#4b515b`)
-- Muted / inactive: Muted Grey (`#717680`)
-- Link / promo text: Link Blue (`#0090d4`)
-- Editorial accent: Magenta (`#ff50da`)
-- Hairline: `#dbdee3`
-
-### Example Component Prompts
-- "Create a hero on white: one giant rotating keyword at 80px Pretendard weight 700, line-height 1.0, color #15181e, normal letter-spacing. Below it a dark CTA button: #15181e background, white text, 8px radius, 12px 16px padding, 48px tall, 16px weight 600 'imweb Sans'."
-- "Design a pricing plan card: white background, no shadow. Recommended plan gets a top promo strip with rgba(0,185,255,0.1) background, #0090d4 text at 14px/600, radius 8px 8px 0 0. Plan CTA: white bg, #4b515b text, 1px #dbdee3 outline, 8px radius, 40px tall, 14px/600."
-- "Build a FAQ accordion: rows with #f8f9fb background, 8px radius, 28px 32px padding, #15181e 16px Pretendard text, no border, no shadow. Section eyebrow above in #ff50da at 24px weight 600."
-- "Create a stats section: full-width #00b9ff background. Bar chart with white-on-cyan bars (top radius 4px), caption text in #81dcff at 24px, headline in white 36px Pretendard 700."
-- "Design top navigation: white header, Pretendard 16px weight 400 links in #15181e, a full-pill icon search button (rgba(113,118,128,0.05) bg, #bcc0c6 glyph, 32px), and a dark #15181e CTA right-aligned."
-
-### Iteration Guide
-1. Headlines: Pretendard 700, size-based hierarchy (80/48/36/28/24), normal tracking
-2. CTAs are ink `#15181e` — cyan never sits on a button
-3. Cyan `#00b9ff` appears as blocks and bars, with the `#2dc5ff`/`#81dcff`/`#ade8ff`/`#dff6ff` ladder for on-cyan text
-4. No shadows — tint with `#f8f9fb`, outline with `#dbdee3`
-5. 8px radius default; 12px media cards; pill only for icon buttons
-6. Button labels in `imweb Sans` 600; body in Pretendard 400
-7. One magenta `#ff50da` eyebrow per view, maximum
-
----
-
-## 10. Voice & Tone
-
-Imweb's voice is **encouraging, plain-spoken, and ease-obsessed**. The entire homepage is built around one repeated promise — 쉬워요 ("it's easy") — applied to every stage of running a brand: design, operations, marketing. The hero pairs a giant rotating ambition word ("매출내기" — making revenue) with reassurance that the path there requires no developer and no designer. Copy speaks to first-time founders in warm, low-jargon Korean, framing Imweb as the partner that removes excuses ("시작이 쉬워서 성장이 쉬운" — easy to start, so easy to grow).
-
-| Context | Tone |
-|---|---|
-| Hero | Ambition word + reassurance. "매출내기" at 80px, then how easy it is. |
-| Feature heads | Three-beat ease refrain: "디자인이 쉬워요", "운영이 쉬워요", "마케팅이 쉬워요". |
-| CTAs | Friction-removing imperatives: "지금 무료로 시작하기", "14일 무료 체험 시작하기". Free/trial always stated. |
-| Social proof | Numbers as evidence: "지금 가장 빠르게 성장하는 브랜드 빌더, 아임웹" over the cumulative-sites chart. |
-| Pricing | Fit-framing, not upsell: "브랜드 운영에 꼭 맞는 요금제를 선택해 보세요". |
-| Blog / guides | Conversational and practical, occasionally playful ("쉬웠는데, 더 쉬워졌어요"). |
-
-**Voice samples (verbatim from live surfaces):**
-- "시작부터 성장까지 쉬워집니다" — homepage section head. *(verified live 2026-06-10)*
-- "디자인이 쉬워요 / 운영이 쉬워요 / 마케팅이 쉬워요" — feature trio heads. *(verified live 2026-06-10)*
-- "시작이 쉬워서 성장이 쉬운 아임웹과 함께하세요" — closing section head. *(verified live 2026-06-10)*
-- "지금 가장 빠르게 성장하는 브랜드 빌더, 아임웹" — stats section head. *(verified live 2026-06-10)*
-- "브랜드 운영에 꼭 맞는 요금제를 선택해 보세요" — pricing headline. *(verified live 2026-06-10)*
-
-**Forbidden register**: technical jargon left unexplained, enterprise-procurement formality, pressure tactics that contradict the "easy and free to try" promise, hype superlatives without a number behind them.
-
-## 11. Brand Narrative
-
-Imweb (주식회사 아임웹) was founded in the early 2010s by **이수모 (Lee Su-mo, CEO)** in Seoul, with the stated vision **"We serve the underserved"** — bringing professional-grade web presence and commerce to the small brands, creators, and first-time founders that traditional web agencies and enterprise commerce platforms ignored. The founding bet was that a Korean-native, no-code website builder could collapse the cost of starting an online brand from "hire a developer and a designer" to "choose a template and start selling."
-
-The product grew from a website builder into a full brand-commerce operating system — templates, hosting, payments (PG integration), bookings, communities, and marketing tools — positioning itself as a "브랜드 빌더" (brand builder) rather than a mere site builder. The growth chart on its own homepage tells the story the company wants told: cumulative sites created climbing year over year to 800,000+ by 2024, presented in brand cyan as plain evidence. Plans (Starter, Pro, Global) follow the same arc: start free, grow into commerce, expand globally.
-
-What Imweb refuses, visible in its design: the intimidating density of enterprise commerce consoles, dark-pattern urgency, and decorative complexity that would contradict "easy." What it embraces: a flat, white, bold-type surface where the customer's own brand — shown in an endless carousel of real customer sites — is the hero, and Imweb's chrome stays deliberately monochrome around it.
-
-## 12. Principles
-
-1. **Easy is the brand.** Every surface must reduce perceived difficulty. *UI implication:* one idea per band, plain-language labels, trial/free always visible on CTAs.
-2. **The customer's brand is the hero.** Imweb shows real customer sites as its primary imagery. *UI implication:* keep chrome monochrome (ink on white) so showcased designs carry the color; never let Imweb's accent compete with customer content.
-3. **Proof over promise.** Growth claims come with charts and counts. *UI implication:* use the cyan data-viz block for evidence moments; numbers get full saturated-brand treatment, adjectives don't.
-4. **One action color, and it isn't the logo color.** Ink (`#15181e`) means "act"; cyan (`#00b9ff`) means "this is us." *UI implication:* never put brand cyan on a button — the separation keeps both signals clean.
-5. **Flat and friendly.** No shadows, 8px corners, generous padding. *UI implication:* separate with tint and hairline; reach for a solid color band, not elevation, when a section needs weight.
-
-## 13. Personas
-
-*Personas below are fictional archetypes informed by publicly observable Imweb user segments (Korean small-brand founders, creators, and SMB operators), not individual people.*
-
-**박민지, 27, 서울.** A fashion-brand founder leaving a smart-store marketplace to own her brand's look. Can't code, has strong design taste. Chose Imweb because the templates looked like the independent brands she admires, and she could swap one in without a developer.
-
-**김도현, 34, 성남.** A YouTuber with 100K subscribers launching merch. Needs shop, bookings for fan events, and community in one place. Values that payments (PG) setup is handled inside the platform — the "PG 가입비 면제" promo on the pricing page is exactly the friction he feared.
-
-**이은영, 41, 대구.** Runs a small academy and built her own site on a free plan years ago; upgraded as bookings grew. Trusts the platform because every step so far was self-serve, and the FAQ answered her questions in plain Korean before she had to call anyone.
-
-## 14. States
-
-| State | Treatment |
-|---|---|
-| **Empty (new site, no content)** | White canvas with a template-first prompt — the empty state IS the template picker. One ink CTA to start; no guilt copy. |
-| **Empty (no search results)** | Single Muted Grey (`#717680`) line stating no matches, with category tabs left visible for re-scoping. |
-| **Loading (site list / templates)** | Flat `#f8f9fb` skeleton blocks at final card dimensions, 8-12px radius. No shadow shimmer — flat pulse consistent with the shadowless system. |
-| **Loading (in-place refresh)** | Previous content stays visible; subtle inline progress. Never block the page. |
-| **Error (form validation)** | Field-level plain-Korean message below the input; states what would be valid, not just "필수 입력". |
-| **Error (payment / PG)** | Inline banner with the specific failure and the concrete next step (card re-registration, contact path) — pricing FAQ already models this plain, answer-first tone. |
-| **Success (site published)** | Calm confirmation with the live URL immediately visible and a share path. The achievement is the user's site, not a celebration animation. |
-| **Success (settings saved)** | Brief auto-dismiss toast, past tense, no exclamation. |
-| **Skeleton** | `#f8f9fb` blocks, final dimensions, 8px radius, flat pulse. |
-| **Disabled** | Labels drop to Faint Alt (`#bcc0c6`) on unchanged surface; ink CTAs fade rather than turning a different hue. |
-
-## 15. Motion & Easing
-
-**Durations**:
-
-| Token | Value | Use |
-|---|---|---|
-| `motion-fast` | 120ms | Hover, tab switch, accordion icon |
-| `motion-standard` | 200ms | FAQ expand, card reveal, dropdown |
-| `motion-slow` | 400ms | Hero keyword rotation, carousel glide |
-
-**Easings**:
-
-| Token | Curve | Use |
-|---|---|---|
-| `ease-enter` | `cubic-bezier(0.2, 0.6, 0.25, 1)` | Arriving — cards, panels, expanded rows |
-| `ease-exit` | `cubic-bezier(0.4, 0.0, 1, 1)` | Dismissals, collapse |
-| `ease-standard` | `cubic-bezier(0.25, 0.1, 0.25, 1)` | Two-way transitions |
-
-**Motion rules**: Motion is continuous but never showy. The two signature movements are ambient: the hero keyword rotation (one ambition word swapping at a relaxed cadence) and the template carousel's steady horizontal drift — both communicate "things are being built on Imweb right now." Interactive motion stays functional: FAQ rows expand at `motion-standard / ease-enter`, tabs switch instantly with a color change. No bounce or spring — approachable should not mean childish. Under `prefers-reduced-motion: reduce`, the keyword rotation and carousel pause and all transitions collapse to instant.
-
-<!--
-OmD v0.1 Sources — Philosophy Layer (sections 10–15)
-
-Tier 1 live inspect (2026-06-10) via playwright getComputedStyle on https://imweb.me and
-https://imweb.me/price — all token-level claims (§1-9) come from this inspection:
-- Hero rotating keyword "매출내기" — Pretendard 80px / 700 / lh 80px / #15181e
-- Primary CTA "지금 무료로 시작하기" — bg #15181e / #ffffff / 8px radius / 12px 16px / 48px / 16px 600 "imweb Sans"
-- Pricing headline 48px/700; eyebrow "브랜드 운영에 꼭 맞는" #ff50da 24px/700
-- Plan secondary CTA — white bg, #4b515b text, outline 1px #dbdee3, 8px, 40px
-- FAQ rows — #f8f9fb, 8px, 28px 32px padding
-- Cyan #00b9ff chart bars (4px top radius), captions #81dcff; promo strip rgba(0,185,255,0.1) text #0090d4
-- box-shadow: none across nav/CTA/cards (shadowless system)
-
-Voice samples (§10) are verbatim from the live homepage and pricing page (listed inline).
-Blog tone reference: https://imweb.me/blog (아임웹 블로그 — categories 인사이트 / 브랜드 인터뷰 /
-아임웹 사용팁; sample title tone "쉬웠는데, 더 쉬워졌어요").
-
-Brand narrative (§11): founder/CEO 이수모 (Lee Su-mo) and the vision statement
-"We serve the underserved" are documented in public Korean company profiles
-(THE VC thevc.kr/imweb, LinkedIn kr.linkedin.com/company/imwebcorp, Jobplanet).
-Public sources disagree on the founding year (2010 per LinkedIn/THE VC registration
-vs March 2013 per other profiles), so §11 states "early 2010s" rather than a single year.
-The 800,000+ cumulative-sites figure is read directly from the live homepage growth
-chart ("2024 80만 개", "2025 누적 사이트 개설 수").
-
-Personas (§13) are fictional archetypes informed by publicly observable Imweb user
-segments (small-brand founders, creators, SMB operators). Names are illustrative;
-they do not refer to real people.
-
-Interpretive claims (e.g., "one action color, and it isn't the logo color",
-"the customer's brand is the hero") are editorial readings connecting Imweb's observed
-design to its positioning, not directly sourced Imweb statements.
--->
-
-
----
-
-## Included Components
-
-The following components are part of this design system:
-
-- Button
-- Input
-- Table
-- Card
-- Badge
-- Tabs
-- Dialog
+| 결정 | 이유 |
+| --- | --- |
+| Imweb 복제에서 프로젝트 전용 시스템으로 전환 | 현재 제품은 마케팅 사이트가 아니라 장시간 사용하는 생산성 도구이기 때문 |
+| Primary를 ink가 아닌 blue로 정의 | 탐색·편집 화면에서 행동과 선택 상태를 일관되게 식별하기 위해 |
+| Pretendard 중심 단일 UI 폰트 | 한국어 가독성, 배포 가능성, 복잡한 데이터 화면의 일관성을 위해 |
+| 쇼케이스와 워크스페이스의 밀도 분리 | 결과물 감상과 대량 정보 편집이 서로 다른 공간 요구를 가지기 때문 |
+| URL·상태 보존을 디자인 원칙으로 포함 | 필터, 딥링크, PDF 페이지, 문서 위치가 핵심 사용자 맥락이기 때문 |
+| 상태·권한·오프라인 규칙 강화 | 실시간 협업과 대용량 업로드의 신뢰성을 UI가 설명해야 하기 때문 |

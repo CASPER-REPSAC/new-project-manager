@@ -1,0 +1,86 @@
+{
+  "generated_at": "2026-07-28T02:20:28.845782+00:00",
+  "nodes": {
+    "design_imweb_design_system": {
+      "code_fingerprint": "faee0b189486825e14da53293e4fab12f04fecfc144e9ccaf49c812141672e28",
+      "label": "Imweb Design System",
+      "last": "2026-07-28T02:15:46.251571+00:00",
+      "provenance": [
+        {
+          "date": "2026-07-28T02:15:46.251571+00:00",
+          "outcome": "useful",
+          "q": "DESIGN.md를 현재 프로젝트 목표에 맞게 수정하라"
+        }
+      ],
+      "score": 0.999924432,
+      "source_file": "DESIGN.md",
+      "status": "tentative",
+      "uses": 1
+    },
+    "docs_page_description_page_specification": {
+      "code_fingerprint": "1f5e08694df821870fa4bea87e88106f1a94cd38a163eb9e92fadb4181fe8d5c",
+      "label": "Page Specification",
+      "last": "2026-07-28T02:15:46.251571+00:00",
+      "provenance": [
+        {
+          "date": "2026-07-28T02:15:46.251571+00:00",
+          "outcome": "useful",
+          "q": "DESIGN.md를 현재 프로젝트 목표에 맞게 수정하라"
+        }
+      ],
+      "score": 0.999924432,
+      "source_file": "docs/page_description.md",
+      "status": "tentative",
+      "uses": 1
+    },
+    "docs_requirements_functional_requirements": {
+      "code_fingerprint": "74050612c0e7c022c8455a97ef66773b60555fd1b6b3a4483e2e773a13f87169",
+      "label": "Functional Requirements",
+      "last": "2026-07-28T02:15:46.251571+00:00",
+      "provenance": [
+        {
+          "date": "2026-07-28T02:15:46.251571+00:00",
+          "outcome": "useful",
+          "q": "DESIGN.md를 현재 프로젝트 목표에 맞게 수정하라"
+        }
+      ],
+      "score": 0.999924432,
+      "source_file": "docs/requirements.md",
+      "status": "tentative",
+      "uses": 1
+    },
+    "docs_wbs_ai_development_wbs": {
+      "code_fingerprint": "a49947741ee424d3448b33166e73b49882d69f8613019c2acc426176722dd725",
+      "label": "AI-assisted Development WBS",
+      "last": "2026-07-28T02:15:46.251571+00:00",
+      "provenance": [
+        {
+          "date": "2026-07-28T02:15:46.251571+00:00",
+          "outcome": "useful",
+          "q": "DESIGN.md를 현재 프로젝트 목표에 맞게 수정하라"
+        }
+      ],
+      "score": 0.999924432,
+      "source_file": "docs/wbs.md",
+      "status": "tentative",
+      "uses": 1
+    },
+    "readme_project_manager_modernization": {
+      "code_fingerprint": "dfbafb9bd2362049e47da37ab8844a05177e8d14efa01103e563157e58f2b50b",
+      "label": "Project Manager Modernization",
+      "last": "2026-07-28T02:15:46.251571+00:00",
+      "provenance": [
+        {
+          "date": "2026-07-28T02:15:46.251571+00:00",
+          "outcome": "useful",
+          "q": "DESIGN.md를 현재 프로젝트 목표에 맞게 수정하라"
+        }
+      ],
+      "score": 0.999924432,
+      "source_file": "README.md",
+      "status": "tentative",
+      "uses": 1
+    }
+  },
+  "version": 1
+}
