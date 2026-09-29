@@ -1,0 +1,142 @@
+<html web-theme="<%=require.web_theme %>">
+    <head>
+        <title>
+            Project Manager
+        </title>
+        <%- include("./fragment/head.ejs") %>
+
+        <!-- custom css -->
+        <link rel="stylesheet" href="/css/main.css">
+        <link rel="stylesheet" href="/css/bootstrap-custom.css">
+        <!-- ---------- -->
+    </head>
+    <body>
+        <%- include("./fragment/header.ejs") %>
+
+        <div id="contents">
+            <div class="container">
+
+                <!-- promo banner -->
+                <div class="promo-banner">
+                    <div class="promo-glow promo-glow-a"></div>
+                    <div class="promo-glow promo-glow-b"></div>
+                    <img src="/image/favicon_image.png" class="promo-mascot">
+                    <div class="promo-text">
+                        <h2>Share your project with Casper</h2>
+                        <p>발표 자료를 올리고, 댓글과 좋아요로 피드백을 받아보세요.</p>
+                    </div>
+                </div>
+
+                <!-- board header -->
+                <div class="board-header">
+                    <div class="board-title"><span class="board-icon"><i class="fas fa-layer-group"></i></span> All Projects</div>
+                </div>
+
+                <!-- filter pills -->
+                <div class="filter-pills">
+                    <button type="button" class="filter-pill all-projects-btn active">All Projects</button>
+                    <button type="button" class="filter-pill popular-projects-btn"><i class="fas fa-fire"></i> Popular</button>
+                    <span class="popular-range-pills" style="display:none;">
+                        <button type="button" class="filter-pill range-pill active" data-range="month">Monthly</button>
+                        <button type="button" class="filter-pill range-pill" data-range="year">Yearly</button>
+                    </span>
+                </div>
+
+                <!-- toolbar -->
+                <div class="board-toolbar">
+                    <div class="board-search">
+                        <i class="fas fa-search"></i>
+                        <input type="search" class="board-search-input" placeholder="Search project by title">
+                    </div>
+                    <div class="board-search board-author-search">
+                        <i class="far fa-user"></i>
+                        <input type="text" class="board-author-input" placeholder="Filter by author" autocomplete="off">
+                        <div class="author-suggestions"></div>
+                    </div>
+                </div>
+
+                <div class="row project-list">
+                    <!-- project list, rendered entirely by /js/api/index.js -->
+                </div>
+
+                <div class="row">
+                    <div class="col-xl-4 col-lg-4 col-sm-6"></div>
+                    <div class="col-xl-4 col-lg-4 col-sm-6 d-flex justify-content-center">
+                        <button type="button" class="btn btn-secondary load-more-btn">Load More Posts &nbsp;&nbsp;<i class="fas fa-arrow-down"></i></button>
+                    </div>
+                    <div class="col-xl-4 col-lg-4 col-sm-6"></div>
+                </div>
+
+                <!-- recent activity strip -->
+                <div class="activity-strip">
+                    <div class="activity-strip-header"><i class="far fa-comment-dots"></i> Recent Comments</div>
+                    <div class="activity-scroll">
+                        <% for(let i = 0; i < comment.length; i++){ %>
+                            <div class="activity-chip">
+                                <div class="recent-comment-info">
+                                    <div class="writer"><a href="/profile/<%=comment[i].user_id %>"><%=comment[i].writer %></a></div>
+                                    <div class="date"><%=comment[i].comment_date %></div>
+                                </div>
+                                <div class="recent-comment-detail">
+                                    <% if(comment[i].type == "comment") { %>
+                                        <a href="/post/<%=comment[i].post_idx %>#comment<%=comment[i].comment_idx %>"><%=comment[i].comment_content %></a>
+                                    <% } %>
+                                    <% if(comment[i].type == "reply") { %>
+                                        <a href="/post/<%=comment[i].post_idx %>#reply<%=comment[i].comment_idx %>"><%=comment[i].comment_content %></a>
+                                    <% } %>
+                                </div>
+                            </div>
+                        <% } %>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <%- include("./fragment/footer.ejs") -%>
+
+        <script src="/js/api/darkmode.js"></script>
+        <script src="/js/api/auth.js"></script>
+        <script src="/js/api/feed.js"></script>
+        <script src="/js/HTML.js"></script>
+        <script src="/js/api/index.js"></script>
+        <script>
+            // live client-side title search over the currently loaded cards
+            $(".board-search-input").on("input", function () {
+                const q = this.value.trim().toLowerCase();
+                $(".project-list .project-box").each(function () {
+                    const title = $(this).find(".project-title").text().toLowerCase();
+                    $(this).toggle(title.includes(q));
+                });
+            });
+
+            // project cards are injected by /js/api/index.js — animate only newly added ones
+            const animatedCards = new WeakSet();
+            new MutationObserver((mutations) => {
+                const added = [];
+                for (const m of mutations) {
+                    for (const node of m.addedNodes) {
+                        if (node.nodeType === 1 && node.classList.contains("project-box") && !animatedCards.has(node)) {
+                            animatedCards.add(node);
+                            added.push(node);
+                        }
+                    }
+                }
+                if (added.length) {
+                    gsap.from(added, { opacity: 0, y: 20, duration: 0.5, stagger: 0.08, ease: "power2.out" });
+                }
+            }).observe(document.querySelector(".project-list"), { childList: true });
+
+            // subtle magnetic tilt on project cards (delegated — cards are added dynamically)
+            $(document).on("mousemove", ".project-box", function (e) {
+                const rect = this.getBoundingClientRect();
+                const px = (e.clientX - rect.left) / rect.width - 0.5;
+                const py = (e.clientY - rect.top) / rect.height - 0.5;
+                gsap.to(this, { rotateX: py * -4, rotateY: px * 4, duration: 0.4, ease: "power2.out", transformPerspective: 600 });
+            });
+            $(document).on("mouseleave", ".project-box", function () {
+                gsap.to(this, { rotateX: 0, rotateY: 0, duration: 0.5, ease: "power2.out" });
+            });
+        </script>
+    </body>
+</html>

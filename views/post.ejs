@@ -1,0 +1,237 @@
+<html web-theme="<%=require.web_theme %>">
+    <head>
+        <title>
+            Project Manager
+        </title>
+        <%- include("./fragment/head.ejs") %>
+
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.css" rel="stylesheet">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.min.js"></script>
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.10.38/pdf_viewer.min.css" integrity="sha512-3RmdRrL3AYc82NkZyJY3Id9029bY37R6LtgNQkNRdZm+eI0sVjV/J5IF9QsC8VDUheqJ9pxCBQc8ts6wiOXIOg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <!-- pdf -> image 로 변환해 주는 라이브러리 -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.10.38/pdf.min.mjs" type="module"></script>
+
+        <!-- custom css -->
+        <link rel="stylesheet" href="/css/main.css">
+        <link rel="stylesheet" href="/css/comment.css">
+        <link rel="stylesheet" href="/css/post.css">
+        <link rel="stylesheet" href="/css/bootstrap-custom.css">
+        <!-- ---------- -->
+
+    </head>
+    <body>
+        <input type="hidden" class="file-name" value="<%= post_attach.path%>">
+        <input type="hidden" name="post-idx" value="<%=post_data.post_idx %>">
+        <% for(let i=0; i<post_data.contents.length; i++) { %>
+            <input type="hidden" class="section-range" value="<%= post_data.contents[i].range_start %>~<%= post_data.contents[i].range_end %>">
+        <% } %>
+
+        <%- include("./fragment/header.ejs") %>
+        <%- include("./fragment/hero.ejs") %>
+
+        <div id="contents">
+            <div class="container">
+
+                <!-- post header -->
+                <div class="post-header apple-card">
+                    <div class="post-like-block">
+                        <i class="fas fa-chevron-up like-unlike post-like-icon"></i>
+                        <div class="post-like-count like-unlike-count"><%=post_data.like_count %></div>
+                    </div>
+                    <div class="post-header-main">
+                        <span class="post-type-badge"><%= post_data.type === "casper" ? "Casper" : "Personal" %></span>
+                        <div class="project-title">
+                            <h1><%=post_data.title %></h1>
+                        </div>
+                        <div class="project-subtitle">
+                            <h4><%=post_data.subtitle %></h4>
+                        </div>
+                        <div class="post-meta-row">
+                            <a href="/profile/<%=post_data.user_id %>" class="post-writer"><i class="far fa-user"></i> <%=post_data.writer %></a>
+                            <span class="post-date"><i class="far fa-calendar-alt"></i> <%=post_data.project_date %></span>
+                            <a href="<%= post_attach.path%>" target="_blank" class="post-download"><i class="fas fa-download"></i> 이 프로젝트 다운로드</a>
+                        </div>
+                        <div class="project-tag">
+                            <% for(let j=0; j<post_data.tag.split(',').length; j++) { %>
+                                <span class="badge badge-pill badge-secondary"><%=post_data.tag.split(',')[j] %></span>
+                            <% } %>
+                        </div>
+                    </div>
+                    <% if(user_info.is_post_owner) { %>
+                        <div class="post-owner-actions">
+                            <a href="/modify/<%=post_data.post_idx %>" class="btn-pill-outline btn-modify-post">수정</a>
+                            <button type="button" class="btn-pill-outline post-delete-btn btn-delete-post">삭제</button>
+                        </div>
+                    <% } %>
+                </div>
+
+                <!-- sections (PDF pages rendered per section — do not change the .project-section-image nesting, pdfToImg.js targets it directly) -->
+                <% for (let i=0; i<post_data.contents.length; i++) { %>
+                    <div class="post-section apple-card project-content">
+                        <div class="post-section-header project-section-title">
+                            <span class="post-section-badge"><i class="fas fa-angle-right"></i> Section <%= i+1 %></span>
+                        </div>
+                        <div class="post-section-body">
+                            <div class="post-section-gallery project-section-image">
+                                <div class="pdf-gallery-row">
+                                    <div class="pdf-gallery-track">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="post-section-desc project-section-info" style="white-space: pre-line;">
+                                <%= post_data.contents[i].section_content %>
+                            </div>
+                        </div>
+                    </div>
+                <% } %>
+
+                <!-- my opinion -->
+                <div class="post-section apple-card project-content">
+                    <div class="project-opinion">
+                        <h3><i class="fas fa-quote-left"></i> My Opinion</h3>
+                        <p class="project-opinion-contents" style="white-space: pre-line;"><%= post_data.opinion %></p>
+                    </div>
+                </div>
+
+                <!-- comments -->
+                <div class="post-section apple-card">
+                    <div class="comments">
+                        <h4><i class="fas fa-comments"></i> Comments (<%=count %>)</h4>
+                    </div>
+                    <% for(let i = 0; i<comment_data.length; i++){ %>
+                        <div class="col-sm-11 comment-thread">
+                            <a id="comment<%=comment_data[i].comment_idx %>">
+                                <div class="comment-info">
+                                    <span class="comment-writer">
+                                        <a href="/profile/<%=comment_data[i].user_id %>"><%=comment_data[i].writer %></a>
+                                    </span>
+                                    <span class="comment-date">
+                                        <%=comment_data[i].comment_date %>
+                                    </span>
+                                    <div class="comment-content" style="white-space: pre-line;">
+                                        <%=comment_data[i].comment_content %>
+                                    </div>
+                                </div>
+                            </a>
+                            <% if(require.is_login){ %>
+                                <div class="comment-reply">
+                                    <input type="hidden" name="comment-idx" value="<%=comment_data[i].comment_idx %>">
+                                    <i class="fas fa-reply"></i> 답글 달기
+                                </div>
+                            <% } %>
+                            <% for(let j=0; j<comment_data[i].reply_comment.length; j++){ %>
+                                <div class="row reply-comment">
+                                    <div class="col-sm-11 offset-sm-1">
+                                        <a id="reply<%=comment_data[i].reply_comment[j].reply_idx %>">
+                                            <div class="comment-info">
+                                                <span class="comment-writer">
+                                                    <a href="/profile/<%=comment_data[i].reply_comment[j].user_id %>"><%=comment_data[i].reply_comment[j].writer %></a>
+                                                </span>
+                                                <span class="comment-date">
+                                                    <%=comment_data[i].reply_comment[j].reply_date %>
+                                                </span>
+                                                <div class="comment-content" style="white-space: pre-line;">
+                                                    <%=comment_data[i].reply_comment[j].reply_content %>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            <% } %>
+                        </div>
+                    <% } %>
+
+                    <% if(require.is_login) { %>
+                        <div class="input-comment-box row">
+                            <div class="col-sm-10">
+                                <textarea class="write-form-textarea input-comment-content" placeholder="댓글을 적어주세요."></textarea>
+                            </div>
+                            <div class="col-sm-1">
+                                <button type="button" class="btn btn-success btn-comment">Submit</button>
+                            </div>
+                        </div>
+                    <% } %>
+                </div>
+            </div>
+
+            <div class="container post-nav-row" id="side-post">
+                <% if(side_posts.previous_post.length != 0){ %>
+                    <button type="button" class="btn-pill-outline post-nav-btn post-nav-prev" onclick="location.href='/post/<%=side_posts.previous_post[0].post_idx %>'"><i class="fas fa-arrow-left"></i> 이전 글</button>
+                <% } else { %>
+                    <span></span>
+                <% } %>
+                <% if(side_posts.next_post.length != 0){ %>
+                    <button type="button" class="btn-pill-outline post-nav-btn post-nav-next" onclick="location.href='/post/<%=side_posts.next_post[0].post_idx %>'">다음 글 <i class="fas fa-arrow-right"></i></button>
+                <% } %>
+            </div>
+        </div>
+
+        <%- include("./fragment/footer.ejs") -%>
+
+        <script src="/js/api/darkmode.js"></script>
+        <script src="/js/modal.js"></script>
+        <script src="/js/HTML.js"></script>
+        <script src="/js/feature/pdfToImg.js"></script>
+        <script src="/js/commentEvent.js"></script>
+        <script src="/js/replyEvent.js"></script>
+        <script src="/js/api/delete.js"></script>
+        <script src="/js/api/like.js"></script>
+        <script src="/js/api/auth.js"></script>
+        <script>
+            gsap.registerPlugin(ScrollTrigger);
+
+            gsap.from(".post-header", { opacity: 0, y: 20, duration: 0.6, ease: "power2.out" });
+
+            $(document).ready(async () => {
+                await showPDF($(".file-name").val());
+                const focusHash = () => {
+                    if(window.location.hash.length != 0){
+                        document.getElementById(window.location.hash.replace("#", "")).scrollIntoView();
+                    }
+                }
+                focusHash();
+
+                // section / opinion blocks fade+slide up as they scroll into view
+                gsap.utils.toArray(".project-content").forEach((el) => {
+                    gsap.from(el, {
+                        opacity: 0,
+                        y: 30,
+                        duration: 0.6,
+                        ease: "power2.out",
+                        scrollTrigger: {
+                            trigger: el,
+                            start: "top 88%",
+                            toggleActions: "play none none none"
+                        }
+                    });
+                });
+
+                // comments + replies stagger in once the comment list scrolls into view
+                gsap.from(".comment-info", {
+                    opacity: 0,
+                    y: 16,
+                    duration: 0.5,
+                    ease: "power2.out",
+                    stagger: 0.08,
+                    scrollTrigger: {
+                        trigger: ".comments",
+                        start: "top 90%",
+                        toggleActions: "play none none none"
+                    }
+                });
+
+                ScrollTrigger.refresh();
+            })
+
+            // like count bumps whenever like.js swaps the number in after a click
+            const likeCountEl = document.querySelector(".like-unlike-count");
+            if (likeCountEl) {
+                new MutationObserver(() => {
+                    gsap.fromTo(likeCountEl, { scale: 1.3 }, { scale: 1, duration: 0.3, ease: "back.out(2)" });
+                }).observe(likeCountEl, { childList: true, characterData: true, subtree: true });
+            }
+        </script>
+    </body>
+</html>

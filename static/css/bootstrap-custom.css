@@ -1,0 +1,163 @@
+/*
+ * Bootstrap component re-skin driven by design-tokens.css.
+ * Every page reuses plain Bootstrap classes (.btn-primary, .btn-secondary,
+ * .badge, .modal-content, ...) so overriding them here re-skins the whole
+ * site without touching markup.
+ */
+
+.btn {
+    font-family: var(--font-text);
+    font-size: var(--text-body-size);
+    border-radius: var(--btn-pill-radius);
+    padding: var(--btn-large-padding);
+    border-width: 1px;
+    transition: background-color var(--motion-fast) ease, color var(--motion-fast) ease, border-color var(--motion-fast) ease, transform var(--motion-fast) ease;
+}
+.btn:active { transform: scale(0.96); }
+.btn-sm, .btn-group-sm > .btn {
+    padding: var(--btn-compact-padding);
+    font-size: var(--text-body-small-size);
+}
+
+/* Primary action — Apple filled pill (#0071e3) */
+.btn-primary,
+.btn-write {
+    color: var(--color-on-primary);
+    background-color: var(--color-primary);
+    border-color: var(--color-primary);
+}
+.btn-primary:hover, .btn-primary:focus,
+.btn-write:hover, .btn-write:focus {
+    color: var(--color-on-primary);
+    background-color: #0077ed;
+    border-color: #0077ed;
+    box-shadow: none;
+}
+.btn-primary:not(:disabled):not(.disabled):active,
+.btn-write:not(:disabled):not(.disabled):active {
+    color: var(--color-on-primary);
+    background-color: #0068d1;
+    border-color: #0068d1;
+}
+
+/* Secondary action — Apple outline pill (#0066cc) */
+.btn-secondary,
+.btn-info {
+    color: var(--color-link);
+    background-color: transparent;
+    border-color: var(--color-link);
+}
+.btn-secondary:hover, .btn-secondary:focus,
+.btn-info:hover, .btn-info:focus {
+    color: var(--color-link);
+    background-color: rgba(0, 113, 227, 0.08);
+    border-color: var(--color-link);
+    box-shadow: none;
+}
+.btn-secondary:not(:disabled):not(.disabled):active,
+.btn-info:not(:disabled):not(.disabled):active {
+    color: var(--color-link);
+    background-color: rgba(0, 113, 227, 0.16);
+    border-color: var(--color-link);
+}
+/* Nav buttons sit on a dark hero/glass bar — keep outline pills legible there */
+.site-nav .btn-secondary, .site-nav .btn-info {
+    color: var(--color-foreground);
+    border-color: var(--color-border);
+}
+.site-nav .btn-secondary:hover, .site-nav .btn-info:hover {
+    background-color: var(--color-surface-alt);
+}
+
+/* Feed / mailing toggle: outline when off, filled primary when on */
+.btn-danger.feed {
+    color: var(--color-link);
+    background-color: transparent;
+    border-color: var(--color-link);
+}
+.btn-danger.feed:hover { background-color: rgba(0, 113, 227, 0.08); }
+.btn-danger.feed.active,
+.active.btn-danger.feed {
+    color: var(--color-on-primary) !important;
+    background: var(--accent-gradient) !important;
+    border-color: transparent !important;
+}
+
+/* Destructive action stays semantically red, still pill-shaped */
+.btn-danger:not(.feed) {
+    color: #ffffff;
+    background-color: #ff3b30;
+    border-color: #ff3b30;
+}
+.btn-danger:not(.feed):hover {
+    background-color: #e0332a;
+    border-color: #e0332a;
+}
+
+.btn-success {
+    color: #ffffff;
+    background-color: #30d158;
+    border-color: #30d158;
+}
+.btn-success:hover { background-color: #29b94d; border-color: #29b94d; }
+
+/* Generic .active toggle (sidebar buttons, tabs) reads as the primary gradient pill */
+.active {
+    background: var(--accent-gradient) !important;
+    border-color: transparent !important;
+    color: var(--color-on-primary) !important;
+}
+
+/* Badges (tags) — flat Apple-style pill chips instead of Bootstrap solid colors */
+.badge-pill {
+    font-family: var(--font-text);
+    font-weight: 400;
+    letter-spacing: var(--text-caption-tracking);
+    padding: 0.4em 1em;
+}
+.badge-secondary,
+.badge-warning {
+    color: var(--color-foreground);
+    background-color: var(--color-surface-alt);
+    border: 1px solid var(--color-border);
+}
+
+/* Modal chrome — Liquid Glass */
+.modal-content {
+    background: var(--glass-bg);
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    backdrop-filter: blur(var(--glass-blur));
+    color: var(--color-foreground);
+    border-radius: var(--card-radius);
+    border: 1px solid var(--glass-border);
+}
+.modal-header, .modal-footer {
+    border-color: var(--color-border);
+}
+
+/* Form controls */
+.form-control {
+    background-color: var(--color-input-bg);
+    border-color: var(--color-input-border);
+    color: var(--color-foreground);
+    border-radius: 12px;
+}
+.form-control:focus {
+    background-color: var(--color-input-bg);
+    color: var(--color-foreground);
+    border-color: var(--color-input-focus);
+    box-shadow: 0 0 0 3px rgba(0, 113, 227, 0.15);
+}
+
+.modal-dialog.modal-fullsize {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.modal-content.modal-fullsize {
+    height: auto;
+    min-height: 100%;
+    border-radius: 0;
+}

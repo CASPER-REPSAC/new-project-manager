@@ -1,0 +1,119 @@
+<html web-theme="<%=require.web_theme %>">
+    <head>
+        <title>
+            Project Manager
+        </title>
+        <%- include("./fragment/head.ejs") %>
+
+        <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/> -->
+        <!-- custom css -->
+        <link rel="stylesheet" href="/css/main.css">
+        <link rel="stylesheet" href="/css/bootstrap-custom.css">
+        <link rel="stylesheet" href="/css/profile.css">
+        <!-- ---------- -->
+    </head>
+    <body>
+        <input type="hidden" name="user_id" value="<%=user_id %>">
+        <%- include("./fragment/header.ejs") %>
+        <%- include("./fragment/hero.ejs") %>
+        <div id="contents">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-lg-8">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <a class="nav-link active" href="#">Summary</a>
+                            </div>
+                            <div class="col-sm-3">
+                                <a class="nav-link" href="#">All Projects</a>
+                            </div>
+                            <div class="col-sm-3">
+                                <a class="nav-link" href="#">All Comments</a>
+                            </div>
+                            <div class="col-sm-3">
+                                <a class="nav-link" href="#">Popular Projects</a>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row menu-result-project">
+
+                        </div>
+                        <div class="row menu-result-comment">
+
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-lg-4">
+                        <div class="profile-box">
+                            <div class="row">
+                                <div class="col-md-8 profile-info d-flex align-items-center">
+                                    <h5><%=writer %></h5>
+                                </div>
+                            </div>
+                            <div class="row profile-total">
+                                <div class="col-sm-4">
+                                    <h3 class="stat-count" data-count="<%=total.like %>">0</h3>
+                                    <span class="info">Like</span>
+                                </div>
+                                <div class="col-sm-4">
+                                    <h3 class="stat-count" data-count="<%=total.project %>">0</h3>
+                                    <span class="info">Projects</span>
+                                </div>
+                                <div class="col-sm-4">
+                                    <h3 class="stat-count" data-count="<%=total.comment %>">0</h3>
+                                    <span class="info">Comments</span>
+                                </div>
+                            </div>
+                            <div class="row profile-badge">
+                                <div class="col-md-12">
+                                    <% for(let i=0; i<tags.length; i++) { %>
+                                        <a href="#" class="badge badge-pill badge-secondary"><%=tags[i] %></a>
+                                    <% } %>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <%- include("./fragment/footer.ejs") %>
+        <script src="/js/HTML.js"></script>
+        <script src="/js/api/profile.js"></script>
+        <script>
+            // count-up animation for the Like / Projects / Comments totals
+            $(".stat-count").each(function () {
+                const el = this;
+                const target = Number($(el).data("count")) || 0;
+                gsap.to({ val: 0 }, {
+                    val: target,
+                    duration: 1,
+                    ease: "power1.out",
+                    onUpdate: function () {
+                        el.textContent = Math.round(this.targets()[0].val);
+                    }
+                });
+            });
+
+            // tag badges stagger in
+            gsap.from(".profile-badge .badge", {
+                opacity: 0, y: 10, duration: 0.4, ease: "power2.out", stagger: 0.05, delay: 0.2
+            });
+
+            // highlight the active tab (profile.js only swaps content, not the .active class)
+            $(document).on("click", ".nav-link", function () {
+                $(".nav-link").removeClass("active");
+                $(this).addClass("active");
+            });
+
+            // profile.js repopulates .menu-result-project / .menu-result-comment via
+            // $(...).append(...) — animate whatever children get added, on first load
+            // and on every tab switch alike.
+            const animateAddedNodes = (mutations) => {
+                const added = mutations.flatMap((m) => Array.from(m.addedNodes)).filter((n) => n.nodeType === 1);
+                if (added.length === 0) return;
+                gsap.from(added, { opacity: 0, y: 12, duration: 0.4, ease: "power2.out", stagger: 0.06 });
+            };
+            new MutationObserver(animateAddedNodes).observe($(".menu-result-project")[0], { childList: true });
+            new MutationObserver(animateAddedNodes).observe($(".menu-result-comment")[0], { childList: true });
+        </script>
+    </body>
+</html>

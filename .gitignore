@@ -1,0 +1,6 @@
+config/*
+!config/secret.example.json
+node_modules/
+static/uploads/*
+data/
+.env

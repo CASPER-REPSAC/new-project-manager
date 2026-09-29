@@ -1,0 +1,60 @@
+<nav id="site-nav" class="glass-panel site-nav">
+    <div class="nav-inner">
+        <a href="/" class="brand">
+            <img src="/image/favicon_image.png" class="favicon-image">
+            <span>Project Manager</span>
+        </a>
+        <div class="header-menu">
+            <a href="https://github.com/CASPER-REPSAC/project-manager/issues" target="_blank" class="bug-report-btn"><button type="button" class="btn btn-info"><i class="fab fa-github fa-lg"></i> Bug Report</button></a>
+            <% if(!require.is_login){ %>
+                <a href="/login"><button type="button" class="btn btn-secondary"><i class="fas fa-sign-in-alt"></i> Login</button></a>
+            <% } else { %>
+                <% if(user_auth == "guest") { %><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal-1">Auth</button> <% } %>
+                <button type="button" class="btn btn-danger feed <% if(require.feed == '1') { %> active <% } %>"><i class="far fa-paper-plane"></i> Mailing</button>
+                <a href="/write"><button type="button" class="btn btn-write"><i class="fas fa-pen"></i> Write</button></a>
+                <a href="/logout"><button type="button" class="btn btn-secondary"><i class="fas fa-sign-out-alt"></i> Logout</button></a>
+
+                <% if(user_auth == "guest") { %>
+                    <div class="modal fade" id="exampleModal-1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">인증하기</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            </div>
+                            <div class="modal-body">
+                                권한 상승을 위해 토큰 값을 입력해 주세요.
+                                <input type="text" class="form-control" placeholder="Input token." name="auth-token">
+                            </div>
+                            <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary btn-auth">submit</button>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                <% } %>
+            <% } %>
+        </div>
+    </div>
+</nav>
+
+<script>
+    gsap.from("#site-nav .brand, #site-nav .header-menu > *", {
+        opacity: 0,
+        y: -12,
+        duration: 0.5,
+        ease: "power2.out",
+        stagger: 0.06
+    });
+
+    ScrollTrigger.create({
+        start: 10,
+        end: 99999,
+        onUpdate: (self) => {
+            document.getElementById("site-nav").classList.toggle("is-scrolled", self.scroll() > 10);
+        }
+    });
+</script>

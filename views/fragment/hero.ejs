@@ -1,0 +1,46 @@
+<header class="hero">
+    <div class="hero-glow hero-glow-a"></div>
+    <div class="hero-glow hero-glow-b"></div>
+    <div class="hero-media" style="background-image:url(/image/header5.png)"></div>
+    <div class="hero-scrim"></div>
+    <div class="container hero-content">
+        <h1 class="hero-title">
+            <span class="hero-word"><img src="/image/favicon_image.png" class="favicon-image hero-favicon">roject</span>
+            <span class="hero-word gradient-text">Manager</span>
+        </h1>
+        <p class="hero-subtitle">For Casper</p>
+    </div>
+</header>
+
+<script>
+    gsap.from(".hero-word", {
+        opacity: 0,
+        y: 28,
+        duration: 0.8,
+        ease: "power3.out",
+        stagger: 0.12,
+        delay: 0.1
+    });
+    gsap.from(".hero-subtitle", {
+        opacity: 0,
+        y: 16,
+        duration: 0.7,
+        ease: "power2.out",
+        delay: 0.4
+    });
+    gsap.from(".hero-media, .hero-scrim", {
+        opacity: 0,
+        scale: 1.06,
+        duration: 1.1,
+        ease: "power2.out"
+    });
+
+    gsap.to(".hero-glow-a", { x: 40, y: -20, duration: 6, ease: "sine.inOut", yoyo: true, repeat: -1 });
+    gsap.to(".hero-glow-b", { x: -30, y: 30, duration: 7, ease: "sine.inOut", yoyo: true, repeat: -1 });
+
+    gsap.to(".hero-media", {
+        yPercent: 15,
+        ease: "none",
+        scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: true }
+    });
+</script>

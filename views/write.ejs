@@ -1,0 +1,185 @@
+<html web-theme="<%=require.web_theme %>">
+    <head>
+        <title>
+            Project Manager
+        </title>
+        <%- include("./fragment/head.ejs") -%>
+
+        <!-- pdf -> image 로 변환해 주는 라이브러리 -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.2.228/pdf.min.js"></script>
+
+        <!-- 태그 입력에 사용되는 라이브러리 -->
+        <script src="/js/jquery.tagsinput.js"></script>
+
+        <!-- 이미지 클릭시 모달창이 뜨는 라이브러리 -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.css" rel="stylesheet">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.min.js"></script>
+
+        <!-- pdf -> image 로 변환해 주는 라이브러리 -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.10.38/pdf_viewer.min.css" integrity="sha512-3RmdRrL3AYc82NkZyJY3Id9029bY37R6LtgNQkNRdZm+eI0sVjV/J5IF9QsC8VDUheqJ9pxCBQc8ts6wiOXIOg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.10.38/pdf.min.mjs" type="module"></script>
+
+        <!-- custom css -->
+        <link rel="stylesheet" href="/css/main.css">
+        <link rel="stylesheet" href="/css/write.css">
+        <link rel="stylesheet" href="/css/bootstrap-custom.css">
+        <link rel="stylesheet" href="/css/jquery.tagsinput.css">
+        <!-- ---------- -->
+
+    </head>
+    <body>
+        <%- include("./fragment/header.ejs") -%>
+        <%- include("./fragment/hero.ejs") -%>
+        <br><br>
+        <div id="content">
+            <div class="container write-box">
+                <div class="write-form">
+                    <!-- 프로젝트 유형 선택 -->
+                    <div class="select-project-type">
+                        <div class="row">
+                            <div class="col-xl-4 col-lg-4 col-sm-6"></div>
+                            <div class="col-xl-4 col-lg-4 col-sm-6 ">
+                                <h4>프로젝트 유형을 선택해주세요.</h4><br>
+                                <button type="button" class="btn btn-success select-type" value="casper">캐스퍼 프로젝트</button>&nbsp;&nbsp;&nbsp;&nbsp;
+                                <button type="button" class="btn btn-success select-type" value="personal">개인 프로젝트</button>
+                                <input type="hidden" class="select-type-value" value="">
+                            </div>
+                            <div class="col-xl-4 col-lg-4 col-sm-6"></div>
+                        </div>
+                    </div>
+                    <!-- --------- -->
+
+                    <!-- 프로젝트 파일 업로드 -->
+                    <div class="select-project-file" style="display: none;">
+                        <div class="row">
+                            <div class="col-xl-3 col-lg-3 col-sm-6"></div>
+                            <div class="col-xl-6 col-lg-6 col-sm-6 ">
+                                <h4>프로젝트 pdf 파일을 업로드 해주세요.</h4><br>
+                                <input type="file" class="form-control write-form-input" name="file" accept=".pdf">
+                            </div>
+                            <div class="col-xl-3 col-lg-3 col-sm-6"></div>
+                        </div>
+                    </div>
+                    <!-- --------- -->
+
+                    <!-- 프로젝트 상세 정보 입력 -->
+                    <div class="input-detail" style="display: none;">
+                        <div class="row title-field">
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control write-form-input" placeholder="제목을 입력해 주세요." name="title">
+                                <input type="text" class="form-control write-form-input" placeholder="부제목을 입력해 주세요." name="subtitle">
+                                
+                            </div>
+                            <div class="col-sm-5">
+                                프로젝트 발표 날: &nbsp;
+                                <input type="date" class="form-control write-form-input date" name="date" width="30">
+                                
+                            </div>
+                        </div>
+
+                        <!-- pdf 미리보기 -->
+                        <div class="pdf-preview">
+                            <h5><i class="far fa-file-pdf"></i> PDF Preview (썸네일을 선택해 주세요.)</h5>
+                        </div>
+                        <!--  -->
+
+                        <div class="row section-field">
+                            <div class="col-sm-3">
+                                <h5><i class="fas fa-stream"></i> Section 1</h5>
+                            </div>
+                            <div class="col-sm-9">
+                                <textarea class="write-form-textarea" placeholder="해당 섹션에 대한 상세 설명을 입력해 주세요." name="section_content"></textarea>
+                                <div class="row">
+                                    <div class="col-sm-10">
+                                        Set range of page.&nbsp;
+                                        <input type="number" class="form-control write-form-input write-form-numbering" value="1">&nbsp;
+                                        <i class="fas fa-minus"></i>&nbsp;
+                                        <input type="number" class="form-control write-form-input write-form-numbering2" value="1" min='1' max="10">
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <button type="button" class="btn btn-success btn-plus btn-section-add"><i class="fas fa-plus"></i></button>
+                                        <button type="button" class="btn btn-danger btn-minus btn-section-remove"><i class="fas fa-minus"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h5><i class="fas fa-comment-dots"></i> My opinion</h5>
+                            </div>
+                            <div class="col-sm-9">
+                                <textarea class="write-form-textarea" placeholder="프로젝트 후기를 입력해 주세요." name="section_opinion"></textarea>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-8"></div>
+                            <div class="col-sm-4">
+                                <input name="tags" id="tags" placeholder="태그를 입력해 주세요."/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-11"></div>
+                            <div class="col-sm-1">
+                                <button type="button" class="btn btn-success btn-submit">submit</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- --------- -->
+                </div>
+            </div>
+        </div>
+        <%- include("./fragment/footer.ejs") -%>
+
+        <script src="/js/HTML.js"></script>
+        <script src="/js/api/darkmode.js"></script>
+        <script src="/js/feature/pdfToImg.js"></script>
+        <script src="/js/previewPDF.js" type="module"></script>
+        <script src="/js/uploadEvent.js" type="module"></script>
+        <script src="/js/write.js" type="module"></script>
+        <script src="/js/api/feed.js"></script>
+        <script>
+            $('#tags').tagsInput();
+
+            gsap.from(".write-box", { opacity: 0, y: 16, duration: 0.5, ease: "power2.out" });
+
+            // write.js / uploadEvent.js still add/remove the old animate.css class names
+            // to drive the step transitions — intercept those class changes and replace
+            // them with a GSAP tween instead of touching that logic.
+            (() => {
+                const ENTER = ["animate__fadeInDown", "animate__fadeIn"];
+                const EXIT = ["animate__fadeOutDown"];
+
+                new MutationObserver((mutations) => {
+                    for (const m of mutations) {
+                        const el = m.target;
+                        const isEnter = ENTER.some((c) => el.classList.contains(c));
+                        const isExit = EXIT.some((c) => el.classList.contains(c));
+                        if (!isEnter && !isExit) continue;
+
+                        el.classList.remove("animate__animated", ...ENTER, ...EXIT);
+
+                        if (isExit) {
+                            gsap.to(el, { opacity: 0, y: 24, duration: 0.45, ease: "power2.in" });
+                        } else {
+                            gsap.fromTo(el, { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.55, ease: "power2.out" });
+                        }
+                    }
+                }).observe(document.querySelector(".write-form"), {
+                    attributes: true, attributeFilter: ["class"], subtree: true
+                });
+            })();
+
+            // newly added section blocks (write.js's addSectionField) fade+slide in
+            new MutationObserver((mutations) => {
+                for (const m of mutations) {
+                    for (const node of m.addedNodes) {
+                        if (node.nodeType === 1 && node.classList.contains("section-field")) {
+                            gsap.from(node, { opacity: 0, y: 16, duration: 0.5, ease: "power2.out" });
+                        }
+                    }
+                }
+            }).observe(document.querySelector(".write-form"), { childList: true, subtree: true });
+        </script>
+    </body>
+</html>

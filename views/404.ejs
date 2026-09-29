@@ -1,0 +1,27 @@
+<html>
+    <head>
+        <title>404</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
+        <link rel="stylesheet" href="/css/design-tokens.css">
+        <link rel="stylesheet" href="/css/404.css">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600&display=swap" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+    </head>
+    <body>
+        <div id="main">
+            <div class="not-found-code">4 <i class="fas fa-ghost"></i> 4</div>
+            <div class="content">Page Not Found</div>
+            <a href="/" class="btn-pill-outline go-home">Go Home</a>
+        </div>
+        <script>
+            gsap.from("#main > *", {
+                opacity: 0,
+                y: 24,
+                duration: 0.6,
+                ease: "power2.out",
+                stagger: 0.12
+            });
+        </script>
+    </body>
+</html>

@@ -1,0 +1,45 @@
+services:
+  app:
+    build: .
+    container_name: express_app
+    restart: always
+    ports:
+      - "3050:80"
+    volumes:
+      - ./data/files:/app/static/uploads
+    environment:
+      - NODE_ENV=development
+      - SESSION_SECRET=${SESSION_SECRET:-}
+      - AUTHENTIK_ISSUER=${AUTHENTIK_ISSUER:-}
+      - AUTHENTIK_CLIENT_ID=${AUTHENTIK_CLIENT_ID:-}
+      - AUTHENTIK_CLIENT_SECRET=${AUTHENTIK_CLIENT_SECRET:-}
+      - AUTHENTIK_CALLBACK_URL=${AUTHENTIK_CALLBACK_URL:-}
+    stop_grace_period: 0s
+    depends_on:
+      - db
+    networks:
+      - app-network
+  pma:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
+    restart: always
+    ports:
+      - "8080:80"
+    environment:
+      - PMA_ARBITRARY=1
+    networks:
+      - app-network
+  db:
+    image: mariadb:11.7-rc
+    container_name: mysql_db
+    restart: always
+    environment:
+      - MARIADB_ROOT_PASSWORD=casper
+      - MARIADB_DATABASE=pm
+      - MARIADB_USER=app
+      - MARIADB_PASSWORD=caspercasper
+    networks:
+      - app-network
+networks:
+  app-network:
+    driver: bridge

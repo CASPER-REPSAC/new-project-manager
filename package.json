@@ -1,0 +1,31 @@
+{
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^4.21.2",
+    "express-session": "^1.18.1",
+    "googleapis": "^144.0.0",
+    "multer": "^1.4.5-lts.1",
+    "mysql2": "^3.12.0",
+    "passport": "^0.7.0",
+    "passport-openidconnect": "^0.1.2",
+    "passport-strategy": "^1.0.0",
+    "serve-favicon": "^2.5.0",
+    "uuid": "^11.0.5"
+  },
+  "type": "module",
+  "name": "project-manager",
+  "version": "1.0.0",
+  "description": "![images](https://img.shields.io/badge/npm-v6.14-brightgreen) ![images](https://img.shields.io/badge/node-v14.15-brightgreen) ![images](https://raw.githubusercontent.com/CASPER-REPSAC/project-manager/main/cover.png)",
+  "main": "app.js",
+  "exports": {
+    ".": {
+      "import": "./app.js",
+      "require": "./app.js"
+    }
+  },
+  "scripts": {
+    "test": "node --test test/*.test.js"
+  },
+  "author": "",
+  "license": "ISC"
+}

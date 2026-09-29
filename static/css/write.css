@@ -1,0 +1,69 @@
+::-webkit-calendar-picker-indicator {
+    filter: invert(var(--input-date-icon-invert));
+}
+.form-control[readonly]{
+    background-color: var(--color-input-bg);
+}
+
+.row{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.write-box{
+    border: 1px solid var(--color-border);
+    border-radius : var(--card-radius);
+    background-color: var(--color-surface);
+
+    margin-bottom: 20px;
+    padding: 50px;
+
+    color: var(--color-foreground);
+}
+.write-form-input, .write-form-textarea{
+    background-color: var(--color-input-bg);
+    border: 1px solid var(--color-input-border);
+    color: var(--color-foreground);
+}
+.write-form-input:focus{
+    background-color: var(--color-input-bg);
+    border: 1px solid var(--color-input-focus);
+    color: var(--color-foreground);
+}
+.write-form-textarea{
+    width: 100%;
+    height: 200px;
+    padding: 10px;
+}
+.write-form-numbering{
+    display: inline-block;
+    width: 70px;
+}
+.write-form-numbering2{
+    display: inline-block;
+    width: 70px;
+}
+.write-form-page{
+    display: inline-block;
+    width: 50px;
+}
+.date{
+    display: inline-block;
+    width: 220px;
+}
+
+.pdf-preview{
+    margin-top: 50px;
+}
+
+#pdf-main-container{
+    display: inline-block;
+    cursor: pointer;
+}
+.selected-thumbnail{
+    border: 3px solid var(--color-primary);
+}
+
+#pdf-contents{
+    margin: 5px 5px;
+}

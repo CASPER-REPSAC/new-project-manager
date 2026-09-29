@@ -1,0 +1,157 @@
+<html web-theme="<%=require.web_theme %>">
+    <head>
+        <title>
+            Project Manager
+        </title>
+        <%- include("./fragment/head.ejs") -%>
+
+        <!-- pdf -> image 로 변환해 주는 라이브러리 -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.10.38/pdf_viewer.min.css" integrity="sha512-3RmdRrL3AYc82NkZyJY3Id9029bY37R6LtgNQkNRdZm+eI0sVjV/J5IF9QsC8VDUheqJ9pxCBQc8ts6wiOXIOg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.10.38/pdf.min.mjs" type="module"></script>
+
+        <!-- 태그 입력에 사용되는 라이브러리 -->
+        <script src="/js/jquery.tagsinput.js"></script>
+
+        <!-- 이미지 클릭시 모달창이 뜨는 라이브러리 -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.css" rel="stylesheet">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.min.js"></script>
+
+        <!-- custom css -->
+        <link rel="stylesheet" href="/css/main.css">
+        <link rel="stylesheet" href="/css/write.css">
+        <link rel="stylesheet" href="/css/bootstrap-custom.css">
+        <link rel="stylesheet" href="/css/jquery.tagsinput.css">
+        <!-- ---------- -->
+
+    </head>
+    <body>
+        <input type="hidden" name="project_file" value="<%=post_attach %>">
+        <input type="hidden" name="section_data" value="<%=post_data.contents %>">
+        <input type="hidden" name="my_opinion" value="<%=post_data.opinion %>">
+        <input type="hidden" name="tags" value="<%=post_data.tag %>">
+        <input type="hidden" name="project_type" class="select-type-value" value="<%=post_data.type %>">
+        <input type="hidden" name="total_page" value="">
+        <input type="hidden" name="post_idx" value="<%=post_data.post_idx %>">
+        <%- include("./fragment/header.ejs") -%>
+        <%- include("./fragment/hero.ejs") -%>
+        <br><br>
+        <div id="content">
+            <div class="container write-box">
+                <div class="write-form">
+                    <!-- 프로젝트 상세 정보 입력 -->
+                    <div class="input-detail">
+                        <div class="row">
+                            <div class="col-sm-2">
+                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" <% if(post_data.type == "casper") {%> checked <% } %> value="casper">
+                                <label class="form-check-label" for="flexRadioDefault2">
+                                    캐스퍼 프로젝트
+                                </label>
+                            </div>
+                            <div class="col-sm-2">
+                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" <% if(post_data.type == "personal") {%> checked <% } %> value="personal">
+                                <label class="form-check-label" for="flexRadioDefault1">
+                                    개인 프로젝트
+                                </label>
+                            </div>
+                        </div>
+                        <div class="row title-field">
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control write-form-input" placeholder="제목을 입력해 주세요." name="title" value="<%=post_data.title %>">
+                                <input type="text" class="form-control write-form-input" placeholder="부제목을 입력해 주세요." name="subtitle" value="<%=post_data.subtitle %>">
+                            </div>
+                            <div class="col-sm-5">
+                                프로젝트 발표 날: &nbsp;
+                                <input type="date" class="form-control write-form-input date" name="date" width="30" value="<%=post_data.project_date %>">
+                                
+                            </div>
+                        </div>
+
+                        <!-- pdf 미리보기 -->
+                        <div class="pdf-preview">
+                            <h5><i class="far fa-file-pdf"></i> PDF Preview (썸네일을 선택해 주세요.)</h5>
+                        </div>
+                        <!--  -->
+
+                        <div class="row section-field">
+                            <div class="col-sm-3">
+                                <h5><i class="fas fa-stream"></i> Section 1</h5>
+                            </div>
+                            <div class="col-sm-9">
+                                <textarea class="write-form-textarea" placeholder="해당 섹션에 대한 상세 설명을 입력해 주세요." name="section_content"></textarea>
+                                <div class="row">
+                                    <div class="col-sm-10">
+                                        Set range of page.&nbsp;
+                                        <input type="number" class="form-control write-form-input write-form-numbering" value="1">&nbsp;
+                                        <i class="fas fa-minus"></i>&nbsp;
+                                        <input type="number" class="form-control write-form-input write-form-numbering2" value="1" min='1' max="10">
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <button type="button" class="btn btn-success btn-plus btn-section-add"><i class="fas fa-plus"></i></button>
+                                        <button type="button" class="btn btn-danger btn-minus btn-section-remove"><i class="fas fa-minus"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h5><i class="fas fa-comment-dots"></i> My opinion</h5>
+                            </div>
+                            <div class="col-sm-9">
+                                <textarea class="write-form-textarea" placeholder="프로젝트 후기를 입력해 주세요." name="section_opinion"></textarea>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-8"></div>
+                            <div class="col-sm-4">
+                                <input name="tags" id="tags" placeholder="태그를 입력해 주세요."/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-11"></div>
+                            <div class="col-sm-1">
+                                <button type="button" class="btn btn-success btn-modify-submit">submit</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- --------- -->
+                </div>
+            </div>
+        </div>
+        <%- include("./fragment/footer.ejs") -%>
+
+        <script src="/js/HTML.js"></script>
+        <script src="/js/api/darkmode.js"></script>
+        <script src="/js/feature/pdfToImg.js"></script>
+        <script src="/js/previewPDF.js" type="module"></script>
+        <script src="/js/modify.js" type="module"></script>
+        <script src="/js/uploadEvent.js" type="module"></script>
+        <script src="/js/write.js" type="module"></script>
+        <script>
+            $('#tags').tagsInput();
+
+            // section blocks that modify.js clones via .btn-section-add.click() fade+slide in
+            const revealedSections = new WeakSet();
+            new MutationObserver((mutations) => {
+                for (const m of mutations) {
+                    for (const node of m.addedNodes) {
+                        if (node.nodeType === 1 && node.classList.contains("section-field")) {
+                            revealedSections.add(node);
+                            gsap.from(node, { opacity: 0, y: 16, duration: 0.5, ease: "power2.out" });
+                        }
+                    }
+                }
+            }).observe(document.querySelector(".write-form"), { childList: true, subtree: true });
+
+            // modify.js's init() is async (awaits initPDF then fills the form) — a short
+            // delay lets the prefilled title/section/PDF preview land before the reveal.
+            // Skip section-fields the observer above already animated (cloned sections),
+            // so a multi-section post doesn't double-flash on load.
+            setTimeout(() => {
+                const targets = [...document.querySelectorAll(".input-detail > *")]
+                    .filter((el) => !revealedSections.has(el));
+                gsap.from(targets, { opacity: 0, y: 16, duration: 0.5, ease: "power2.out", stagger: 0.08 });
+            }, 250);
+        </script>
+    </body>
+</html>
